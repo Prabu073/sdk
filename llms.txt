@@ -1,0 +1,24 @@
+# Zoho Flow Custom Class SDK
+
+Current supported language: Java
+SDK version: 1.0.0
+Java target: 11
+
+Canonical entry points:
+- README.md
+- sdk/java/README.md
+- sdk/java/docs/getting-started.md
+- sdk/java/docs/java-api.md
+- sdk/java/docs/transformation.md
+- sdk/java/docs/packaging.md
+- sdk/java/docs/artifact-review.md
+- sdk/java/compatibility.json
+
+Generation constraints:
+- Do not present Python or Node.js SDKs as available.
+- Compile Java connectors with ZFAgentCustom.jar and json.jar.
+- Do not include ZFAgentCustom.jar or json.jar in connector upload ZIPs.
+- Use only customer-facing APIs documented by the Java API reference.
+- Do not treat undocumented classes found in the candidate JAR as supported APIs.
+- Do not call Agent lifecycle initialization methods.
+- Prefer static fields when the schema is known at implementation time.

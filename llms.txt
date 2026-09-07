@@ -12,6 +12,9 @@ Canonical entry points:
 - sdk/java/docs/transformation.md
 - sdk/java/docs/packaging.md
 - sdk/java/compatibility.json
+- samples/catalog.json
+- samples/01-hello-static/java/sample.json
+- samples/01-hello-static/java/README.md
 
 Generation constraints:
 - Do not present Python or Node.js SDKs as available.
@@ -20,3 +23,4 @@ Generation constraints:
 - Use only customer-facing APIs documented by the Java API reference.
 - Do not call Agent lifecycle initialization methods.
 - Prefer static fields when the schema is known at implementation time.
+- Use samples/01-hello-static/java as the minimal supported connector shape.

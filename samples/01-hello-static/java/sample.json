@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "hello-static",
+  "name": "Hello Static",
+  "language": "java",
+  "difficulty": "beginner",
+  "sampleVersion": "1.0.0",
+  "sdkVersion": "1.0.0",
+  "javaRelease": 11,
+  "connectorClass": "com.zoho.flow.samples.hello.HelloConnector",
+  "actions": [
+    "sayHello"
+  ],
+  "capabilities": [
+    "action",
+    "static-input",
+    "static-output"
+  ],
+  "build": {
+    "macosLinux": "./build.sh",
+    "windows": "build.bat",
+    "output": "hello-static.zip"
+  },
+  "upload": {
+    "libraryLinkName": "hello-static",
+    "topLevelDirectory": "hello-static",
+    "includesSdkJar": false,
+    "includesJsonJar": false
+  }
+}

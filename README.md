@@ -21,7 +21,9 @@ Only directories for currently available language implementations are included. 
 3. Use the [Java API reference](sdk/java/docs/java-api.md) when adding advanced capabilities.
 4. Check [SDK and Agent compatibility](sdk/java/docs/compatibility.md) before packaging a connector.
 
-Ready-to-upload sample applications will be added in a later phase.
+## Try without writing code
+
+The [Hello Static sample](samples/01-hello-static/README.md) includes a ready-to-upload Java ZIP. It demonstrates one action with static input and output and requires no authentication or third-party service.
 
 ## Repository map
 
@@ -35,6 +37,10 @@ sdk/
     SHA256SUMS          Artifact integrity hashes
     lib/                Java compile-time dependencies
     docs/               Detailed Java documentation
+samples/
+  README.md             Human-readable sample catalog
+  catalog.json          Machine-readable sample catalog
+  01-hello-static/      First beginner sample
 ```
 
 ## Licensing status

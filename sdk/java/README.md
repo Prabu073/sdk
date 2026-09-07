@@ -48,7 +48,7 @@ Windows:
 javac -cp "sdk\java\lib\ZFAgentCustom.jar;sdk\java\lib\json.jar" YourConnector.java
 ```
 
-A complete Maven-based sample project and ready-to-upload ZIP will be added with the samples catalog.
+For a complete project and ready-to-upload ZIP, use the [Hello Static Java sample](../../samples/01-hello-static/java/README.md).
 
 ## Important runtime boundaries
 

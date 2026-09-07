@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "samples": [
+    {
+      "id": "hello-static",
+      "order": 1,
+      "name": "Hello Static",
+      "difficulty": "beginner",
+      "capabilities": [
+        "action",
+        "static-input",
+        "static-output"
+      ],
+      "languages": {
+        "java": {
+          "status": "available",
+          "sampleVersion": "1.0.0",
+          "sdkVersion": "1.0.0",
+          "javaRelease": 11,
+          "path": "01-hello-static/java",
+          "download": "01-hello-static/java/hello-static.zip"
+        }
+      }
+    }
+  ]
+}

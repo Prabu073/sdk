@@ -42,11 +42,11 @@ samples/
   catalog.json          Machine-readable sample catalog
 ```
 
-## Licensing status
+## License
 
-The SDK-specific license is pending approval. The existing Zoho Flow On-Prem Agent agreement is retained only as [legal reference material](legal/README.md) and is not presented as the finalized SDK license. Do not publish this repository as a generally available SDK until the SDK license has been approved.
+This repository is available under the [MIT License](LICENSE.txt).
 
-The bundled JSON-java dependency is documented in [third-party notices](THIRD_PARTY_LICENSES/README.md).
+Third-party components retain their respective terms. The bundled JSON-java dependency is documented with the [Java SDK third-party notices](sdk/java/third_party_licenses/README.md).
 
 ## Support and security
 

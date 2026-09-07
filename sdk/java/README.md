@@ -68,4 +68,4 @@ Version `1.0.0` is currently assigned by this distribution. The supplied JAR man
 
 ## Licensing
 
-The SDK-specific license is pending approval. See the repository [legal status](../../legal/README.md) and [third-party notices](../../THIRD_PARTY_LICENSES/README.md) before public release.
+The SDK repository is available under the [MIT License](../../LICENSE.txt). The bundled JSON-java dependency retains its own terms, documented in the Java SDK [third-party notices](third_party_licenses/README.md).

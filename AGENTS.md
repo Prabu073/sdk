@@ -11,5 +11,5 @@ This repository distributes the customer-facing Zoho Flow Custom Class SDK. It d
 - Never place those two SDK-provided JARs in a connector upload ZIP.
 - Do not expose or depend directly on Agent lifecycle implementation classes.
 - Keep documentation links relative and verify them when files move.
-- Do not present `legal/reference/ZohoFlow_Agent_License.txt` as the finalized SDK license.
+- Preserve the root `LICENSE.txt` and the dependency notices under `sdk/java/third_party_licenses/` when reorganizing or distributing artifacts.
 - Discover available samples and language implementations through `samples/catalog.json`; keep individual sample details inside `samples/`.

@@ -9,7 +9,7 @@ This SDK provides the customer-facing Java types used to build custom classes fo
 
 The [`lib`](lib/) directory contains:
 
-- [`ZFAgentCustom.jar`](lib/ZFAgentCustom.jar) — custom-class API, annotations, dynamic fields, triggers, long-lived connections, and transformations. The candidate JAR also contains test-kit classes whose release status requires confirmation.
+- [`ZFAgentCustom.jar`](lib/ZFAgentCustom.jar) — custom-class API, annotations, dynamic fields, triggers, long-lived connections, and transformations.
 - [`json.jar`](lib/json.jar) — JSON-java dependency used by the SDK APIs.
 
 Add both JARs to the compile and local-test classpath. The Agent provides these libraries at runtime, so do **not** include either JAR in a connector upload ZIP.
@@ -33,7 +33,6 @@ Start with the [static-first guide](docs/getting-started.md). It introduces one 
 | Complete API contract | [Java API reference](docs/java-api.md) |
 | Packaging | [Packaging and dependencies](docs/packaging.md) |
 | SDK and Agent versions | [Compatibility](docs/compatibility.md) |
-| Candidate JAR review | [Artifact review](docs/artifact-review.md) |
 
 ## Compile classpath
 
@@ -65,7 +64,7 @@ A complete Maven-based sample project and ready-to-upload ZIP will be added with
 - [`compatibility.json`](compatibility.json)
 - [`SHA256SUMS`](SHA256SUMS)
 
-Version `1.0.0` is currently assigned by this distribution. The supplied JAR manifest does not yet embed an implementation version; see the [artifact review](docs/artifact-review.md).
+Version `1.0.0` is currently assigned by this distribution. The supplied JAR manifest does not yet embed an implementation version; the repository's `VERSION`, compatibility metadata, and checksum identify this distribution.
 
 ## Licensing
 

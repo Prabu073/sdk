@@ -1,7 +1,5 @@
 # Zoho Flow Java Custom Class SDK — Source-Verified Reference
 
-> Distribution note: this reference was derived from the inspected Java source. The supplied `1.0.0` candidate JAR also contains `com.zoho.agent.flow.customclass.annotation.Trigger` and `com.zoho.agent.flow.customclass.testing.*`. Those types are not added to the supported customer API by this document. Their public release status must be confirmed before general availability; see [Artifact review](artifact-review.md).
-
 ## 1. Scope and source note
 
 This reference describes the customer-facing Java API found in the inspected source tree on 2026-08-26. The Java source is authoritative.

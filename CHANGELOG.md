@@ -8,4 +8,3 @@ All notable changes to the Zoho Flow Custom Class SDK distribution will be docum
 - Added `ZFAgentCustom.jar` and JSON-java compile dependency.
 - Added static-first, Java API, transformation, packaging, and compatibility documentation.
 - Added machine-readable compatibility metadata and artifact checksums.
-- Recorded candidate JAR API-boundary and release-readiness items.

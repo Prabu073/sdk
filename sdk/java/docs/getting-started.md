@@ -4,6 +4,14 @@ This guide helps a Java developer build a first working custom connector quickly
 
 The SDK source is authoritative. Classes such as `CustomerApi`, `SpreadsheetClient`, `CsvSupport`, `DatabaseClient`, and `ProtocolClient` used in examples are placeholders for customer-owned code; they are not SDK classes.
 
+## Quick start
+
+1. Use Java 11 and add [`ZFAgentCustom.jar`](../lib/ZFAgentCustom.jar) and [`json.jar`](../lib/json.jar) to the compile classpath.
+2. Start with the three small Java classes in section 1: one connector, one input model, and one output model.
+3. Compile the connector, then follow the [packaging guide](packaging.md). Do not include either SDK-provided JAR in the upload ZIP.
+
+The remaining sections are progressive. Read static fields and authentication first; continue to dynamic fields, polling, and real-time connections only when the integration needs those capabilities.
+
 ## 1. Start here: a static action
 
 A basic connector needs only:

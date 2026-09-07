@@ -16,8 +16,6 @@ The minimum supported and maximum-tested Agent versions have not yet been approv
 
 This repository must not claim compatibility with every Agent version until the release has been tested against the supported production matrix.
 
-See the [candidate artifact review](artifact-review.md) for the remaining API-boundary checks.
-
 ## Versioning policy
 
 The SDK uses semantic versioning:

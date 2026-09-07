@@ -23,7 +23,7 @@ Only directories for currently available language implementations are included. 
 
 ## Try without writing code
 
-The [Hello Static sample](samples/01-hello-static/README.md) includes a ready-to-upload Java ZIP. It demonstrates one action with static input and output and requires no authentication or third-party service.
+Browse the [sample catalog](samples/README.md) for ready-to-upload archives and source projects. Each sample documents its available language implementations, requirements, expected input/output, and build instructions.
 
 ## Repository map
 
@@ -40,7 +40,6 @@ sdk/
 samples/
   README.md             Human-readable sample catalog
   catalog.json          Machine-readable sample catalog
-  01-hello-static/      First beginner sample
 ```
 
 ## Licensing status

@@ -48,7 +48,7 @@ Windows:
 javac -cp "sdk\java\lib\ZFAgentCustom.jar;sdk\java\lib\json.jar" YourConnector.java
 ```
 
-For a complete project and ready-to-upload ZIP, use the [Hello Static Java sample](../../samples/01-hello-static/java/README.md).
+For complete projects and ready-to-upload archives, browse the [sample catalog](../../samples/README.md).
 
 ## Important runtime boundaries
 

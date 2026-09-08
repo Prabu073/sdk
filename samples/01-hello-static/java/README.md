@@ -29,7 +29,7 @@ Expected output:
 }
 ```
 
-For the complete ZIP-to-Flow path, see [Use an On-Prem Extension in Zoho Flow](../../../sdk/java/docs/using-in-flow.md).
+For the complete ZIP-to-Flow path, see [Use an On-Prem Extension in Zoho Flow](../../../using-in-ZohoFlow.md).
 
 ## Source layout
 

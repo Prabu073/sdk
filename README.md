@@ -16,10 +16,11 @@ Only directories for currently available language implementations are included. 
 
 ## Start here
 
-1. Read the [Java SDK overview](sdk/java/README.md).
-2. Follow the [static-first getting-started guide](sdk/java/docs/getting-started.md).
-3. Use the [Java API reference](sdk/java/docs/java-api.md) when adding advanced capabilities.
-4. Check [SDK and Agent compatibility](sdk/java/docs/compatibility.md) before packaging a connector.
+1. Choose a language from the [SDK index](sdk/README.md) and open its overview.
+2. Follow the getting-started guide for that language.
+3. Use the language API reference when adding advanced capabilities.
+4. Check compatibility metadata before packaging an Extension.
+5. To upload and use your Extension in Zoho Flow, see [Use an On-Prem Extension in Zoho Flow](using-in-ZohoFlow.md).
 
 ## Try without writing code
 
@@ -46,7 +47,7 @@ samples/
 
 This repository is available under the [MIT License](LICENSE.txt).
 
-Third-party components retain their respective terms. The bundled JSON-java dependency is documented with the [Java SDK third-party notices](sdk/java/third_party_licenses/README.md).
+Third-party components retain their respective terms. See the third-party notices in each language SDK directory.
 
 ## Support and security
 

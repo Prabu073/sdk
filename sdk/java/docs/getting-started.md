@@ -1,4 +1,4 @@
-# Zoho Flow Java Custom Classes — Static-First Customer Guide
+# Zoho Flow Java On-Prem Extensions — Static-First Customer Guide
 
 This guide helps a Java developer build a first working custom connector quickly, then add advanced capabilities only when the integration needs them.
 
@@ -6,7 +6,7 @@ The SDK source is authoritative. Classes such as `CustomerApi`, `SpreadsheetClie
 
 ## Quick start
 
-1. Use Java 11 and add [`ZFAgentCustom.jar`](../lib/ZFAgentCustom.jar) and [`json.jar`](../lib/json.jar) to the compile classpath.
+1. Use Java 11 and add [`ZohoFlow-extension-sdk.jar`](../lib/ZohoFlow-extension-sdk.jar) and [`json.jar`](../lib/json.jar) to the compile classpath.
 2. Start with the three small Java classes in section 1: one connector, one input model, and one output model.
 3. Compile the connector, then follow the [packaging guide](packaging.md). Do not include either SDK-provided JAR in the upload ZIP.
 
@@ -16,9 +16,9 @@ The remaining sections are progressive. Read static fields and authentication fi
 
 A basic connector needs only:
 
-1. A connector extending `AbstractCustomClass`.
-2. An input POJO extending `CustomClassData`.
-3. An output POJO extending `CustomClassData`.
+1. A connector extending `AbstractExtension`.
+2. An input POJO extending `ExtensionData`.
+3. An output POJO extending `ExtensionData`.
 4. A public method annotated with `@Action`.
 
 Put each public top-level class in its own `.java` file.
@@ -28,10 +28,10 @@ Put each public top-level class in its own `.java` file.
 ```java
 package com.example.text;
 
-import com.zoho.agent.flow.customclass.AbstractCustomClass;
-import com.zoho.agent.flow.customclass.annotation.Action;
+import com.zoho.agent.flow.extension.AbstractExtension;
+import com.zoho.agent.flow.extension.annotation.Action;
 
-public final class TextConnector extends AbstractCustomClass {
+public final class TextConnector extends AbstractExtension {
     @Action
     public UppercaseOutput uppercase(UppercaseInput input) {
         UppercaseOutput output = new UppercaseOutput();
@@ -46,10 +46,10 @@ public final class TextConnector extends AbstractCustomClass {
 ```java
 package com.example.text;
 
-import com.zoho.agent.flow.customclass.CustomClassData;
-import com.zoho.agent.flow.customclass.annotation.Label;
+import com.zoho.agent.flow.extension.ExtensionData;
+import com.zoho.agent.flow.extension.annotation.Label;
 
-public final class UppercaseInput extends CustomClassData {
+public final class UppercaseInput extends ExtensionData {
     @Label("Text")
     public String value;
 }
@@ -60,9 +60,9 @@ public final class UppercaseInput extends CustomClassData {
 ```java
 package com.example.text;
 
-import com.zoho.agent.flow.customclass.CustomClassData;
+import com.zoho.agent.flow.extension.ExtensionData;
 
-public final class UppercaseOutput extends CustomClassData {
+public final class UppercaseOutput extends ExtensionData {
     public String value;
 }
 ```
@@ -86,12 +86,12 @@ Supported static field families include:
 | `java.util.Date` | Date-time |
 | enum | Dropdown |
 | Array or `List<T>` | Repeated value |
-| `CustomClassData` subtype | Nested object |
+| `ExtensionData` subtype | Nested object |
 
-Use arrays or parameterized `List<T>` for repeated values. Maps and arbitrary Java POJOs are not static field types; nested customer models must extend `CustomClassData`.
+Use arrays or parameterized `List<T>` for repeated values. Maps and arbitrary Java POJOs are not static field types; nested customer models must extend `ExtensionData`.
 
 ```java
-public final class CreateContactInput extends CustomClassData {
+public final class CreateContactInput extends ExtensionData {
     @Label("Full name")
     @Description("Name displayed in the remote application")
     public String name;
@@ -104,7 +104,7 @@ public final class CreateContactInput extends CustomClassData {
     public List<String> tags;
 }
 
-public final class ContactAddress extends CustomClassData {
+public final class ContactAddress extends ExtensionData {
     public String city;
     public String country;
 }
@@ -133,11 +133,11 @@ Authentication is optional. Add it only when the external system requires creden
 ```java
 package com.example.contacts;
 
-import com.zoho.agent.flow.customclass.AbstractAuthenticationData;
-import com.zoho.agent.flow.customclass.AbstractCustomClass;
-import com.zoho.agent.flow.customclass.annotation.Authentication;
-import com.zoho.agent.flow.customclass.annotation.Label;
-import com.zoho.agent.flow.customclass.annotation.Mask;
+import com.zoho.agent.flow.extension.AbstractAuthenticationData;
+import com.zoho.agent.flow.extension.AbstractExtension;
+import com.zoho.agent.flow.extension.annotation.Authentication;
+import com.zoho.agent.flow.extension.annotation.Label;
+import com.zoho.agent.flow.extension.annotation.Mask;
 
 public final class ContactAuthentication extends AbstractAuthenticationData {
     @Label("Base URL")
@@ -149,7 +149,7 @@ public final class ContactAuthentication extends AbstractAuthenticationData {
 }
 
 @Authentication(ContactAuthentication.class)
-public final class ContactConnector extends AbstractCustomClass {
+public final class ContactConnector extends AbstractExtension {
     private ContactAuthentication authentication() {
         return (ContactAuthentication) getAuthentication();
     }
@@ -208,10 +208,10 @@ Dynamic fields use these customer-facing types:
 Extend `DynamicInput` when an input contains a dynamic member.
 
 ```java
-import com.zoho.agent.flow.customclass.annotation.Label;
-import com.zoho.agent.flow.customclass.dynamic.DropdownOption;
-import com.zoho.agent.flow.customclass.dynamic.DynamicDropdown;
-import com.zoho.agent.flow.customclass.dynamic.DynamicInput;
+import com.zoho.agent.flow.extension.annotation.Label;
+import com.zoho.agent.flow.extension.dynamic.DropdownOption;
+import com.zoho.agent.flow.extension.dynamic.DynamicDropdown;
+import com.zoho.agent.flow.extension.dynamic.DynamicInput;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -312,9 +312,9 @@ public List<DropdownOption> load() throws Exception {
 Use `PrimitiveField` for scalar leaves and `DynamicObject` for nested objects.
 
 ```java
-import com.zoho.agent.flow.customclass.FieldType;
-import com.zoho.agent.flow.customclass.dynamic.DynamicObject;
-import com.zoho.agent.flow.customclass.dynamic.PrimitiveField;
+import com.zoho.agent.flow.extension.FieldType;
+import com.zoho.agent.flow.extension.dynamic.DynamicObject;
+import com.zoho.agent.flow.extension.dynamic.PrimitiveField;
 
 private static DynamicObject contactSchema() {
     return new DynamicObject()
@@ -460,7 +460,7 @@ Calling write methods on framework-populated input throws `UnsupportedOperationE
 Extend `DynamicOutput<I>` when an output contains a dynamic field. Its `input` and authentication are available while Flow loads output metadata.
 
 ```java
-public final class DescribeInput extends CustomClassData {
+public final class DescribeInput extends ExtensionData {
     public String objectType;
 }
 
@@ -537,9 +537,9 @@ The schema `.mask()` metadata does not transform data. The connector must perfor
 
 | Input | Output | Input base | Output base |
 |---|---|---|---|
-| Static | Static | `CustomClassData` | `CustomClassData` |
-| Dynamic | Static | `DynamicInput` | `CustomClassData` |
-| Static | Dynamic | `CustomClassData` | `DynamicOutput<Input>` |
+| Static | Static | `ExtensionData` | `ExtensionData` |
+| Dynamic | Static | `DynamicInput` | `ExtensionData` |
+| Static | Dynamic | `ExtensionData` | `DynamicOutput<Input>` |
 | Dynamic | Dynamic | `DynamicInput` | `DynamicOutput<Input>` |
 
 Choose bases according to whether the POJO contains a top-level `DynamicDropdown` or `DynamicField`.
@@ -578,7 +578,7 @@ public final class AddRowInput extends DynamicInput {
     };
 }
 
-public final class AddRowOutput extends CustomClassData {
+public final class AddRowOutput extends ExtensionData {
     public String rowId;
 }
 ```
@@ -609,14 +609,14 @@ Validate or allow-list SQL identifiers. Never concatenate untrusted labels or va
 
 ## 15. Polling trigger
 
-A polling trigger accepts one `CustomClassData` input and returns `List<Event>`.
+A polling trigger accepts one `ExtensionData` input and returns `List<Event>`.
 
 ```java
-public final class PollInput extends CustomClassData {
+public final class PollInput extends ExtensionData {
     public String queue;
 }
 
-public final class PollEvent extends CustomClassData {
+public final class PollEvent extends ExtensionData {
     public String id;
     public String body;
     public long updatedTime;
@@ -739,11 +739,11 @@ public final class ProtocolConnection extends LongLivedConnection<RealtimeAuthen
 ```
 
 ```java
-public final class MessageInput extends CustomClassData {
+public final class MessageInput extends ExtensionData {
     public String channel;
 }
 
-public final class MessageEvent extends CustomClassData {
+public final class MessageEvent extends ExtensionData {
     public String text;
 }
 
@@ -767,7 +767,7 @@ public final class MessageSubscription extends Subscription<ProtocolConnection, 
 
 ```java
 @Authentication(RealtimeAuthentication.class)
-public final class RealtimeConnector extends AbstractCustomClass {
+public final class RealtimeConnector extends AbstractExtension {
     @RealTimeTrigger
     public MessageSubscription messages(MessageInput input) {
         return new MessageSubscription(input);
@@ -786,7 +786,7 @@ public PublishOutput publish(PublishInput input) throws Exception {
     try {
         return connection.publish(input);
     } catch (ProtocolUnavailableException exception) {
-        throw CustomClassException.retryable("Protocol connection is temporarily unavailable", exception);
+        throw ExtensionException.retryable("Protocol connection is temporarily unavailable", exception);
     }
 }
 ```
@@ -795,15 +795,15 @@ The Agent pins the connection from its first lookup until the action returns or 
 
 ## 18. Error classification
 
-Use `CustomClassException` when connector code can distinguish transient and permanent failures.
+Use `ExtensionException` when connector code can distinguish transient and permanent failures.
 
 ```java
 if (response.statusCode() == 429 || response.statusCode() >= 500) {
-    throw CustomClassException.retryable("Remote service is temporarily unavailable");
+    throw ExtensionException.retryable("Remote service is temporarily unavailable");
 }
 
 if (response.statusCode() == 401) {
-    throw CustomClassException.nonRetryable("Authentication was rejected");
+    throw ExtensionException.nonRetryable("Authentication was rejected");
 }
 ```
 
@@ -825,7 +825,7 @@ The full Agent runtime uses package-private lifecycle methods to initialize SDK 
 Customer code should use:
 
 - Connector and dynamic-base protected `getAuthentication()`.
-- `CustomClassData.getPollingInfo()` inside polling-trigger methods.
+- `ExtensionData.getPollingInfo()` inside polling-trigger methods.
 - `DynamicDropdown.getId()` and `getLabel()` during execution.
 - `DynamicField.get()` for execution input.
 - `DynamicField.create()` for execution output.
@@ -884,7 +884,7 @@ Log files rotate automatically (up to 3 files, 10 MB each). The library log is c
 |---|---|---|
 | A simple connector becomes difficult to configure | Dynamic fields were used for a compile-time-known schema | Start with public static POJO fields; add dynamic fields only for tenant-dependent choices or shapes |
 | A class or method is missing from metadata | The class/constructor is inaccessible, a field is `final`, or the method signature is invalid | Use public framework-instantiated classes with public no-arg constructors and supported method signatures |
-| Static nested data is rejected | An arbitrary POJO or map was used | Make nested models extend `CustomClassData`; use dynamic structures only for runtime-defined schemas |
+| Static nested data is rejected | An arbitrary POJO or map was used | Make nested models extend `ExtensionData`; use dynamic structures only for runtime-defined schemas |
 | A dynamic member is absent or throws during loading | The `DynamicDropdown` or `DynamicField` member was left null | Initialize dynamic members when declaring them |
 | Dynamic input throws `UnsupportedOperationException` | Connector code attempted to mutate framework-populated input or called `create()` on it | Read input with `get()`; call `create()` only on output |
 | Dynamic output is null or reports duplicate creation | `get()` was called before `create()`, or `create()` was called twice | Call `create()` exactly once and retain the returned writable structure |
@@ -903,8 +903,8 @@ Log files rotate automatically (up to 3 files, 10 MB each). The library log is c
 
 ### First static project
 
-- [ ] Connector extends `AbstractCustomClass`.
-- [ ] Input and output extend `CustomClassData`.
+- [ ] Connector extends `AbstractExtension`.
+- [ ] Input and output extend `ExtensionData`.
 - [ ] Action method is public, has one input parameter, and uses `@Action`.
 - [ ] Public model classes have accessible no-argument constructors.
 - [ ] Execution fields are public, supported, and non-final.

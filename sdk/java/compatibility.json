@@ -13,7 +13,7 @@
   },
   "artifacts": [
     {
-      "name": "ZFAgentCustom.jar",
+      "name": "ZohoFlow-extension-sdk.jar",
       "role": "sdk"
     },
     {

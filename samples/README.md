@@ -12,7 +12,7 @@ The machine-readable catalog is available in [`catalog.json`](catalog.json).
 
 ### Try it immediately
 
-Download the sample ZIP and upload it through the Zoho Flow custom-class/library interface. No local Java setup is required for this path.
+Download the sample ZIP and upload it through the Zoho Flow on-prem-extension/library interface. No local Java setup is required for this path.
 
 ### Modify it
 

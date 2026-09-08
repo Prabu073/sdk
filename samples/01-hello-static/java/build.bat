@@ -15,13 +15,13 @@ if exist "%BUILD_DIR%" rmdir /s /q "%BUILD_DIR%"
 if exist "%OUTPUT_ZIP%" del /q "%OUTPUT_ZIP%"
 mkdir "%MAIN_CLASSES%" "%TEST_CLASSES%" "%PACKAGE_DIR%\hello-static"
 
-javac --release 11 -cp "%SDK_DIR%\ZFAgentCustom.jar;%SDK_DIR%\json.jar" -d "%MAIN_CLASSES%" "%MAIN_SOURCE%\HelloConnector.java" "%MAIN_SOURCE%\HelloInput.java" "%MAIN_SOURCE%\HelloOutput.java"
+javac --release 11 -cp "%SDK_DIR%\ZohoFlow-extension-sdk.jar;%SDK_DIR%\json.jar" -d "%MAIN_CLASSES%" "%MAIN_SOURCE%\HelloConnector.java" "%MAIN_SOURCE%\HelloInput.java" "%MAIN_SOURCE%\HelloOutput.java"
 if errorlevel 1 exit /b 1
 
-javac --release 11 -cp "%MAIN_CLASSES%;%SDK_DIR%\ZFAgentCustom.jar;%SDK_DIR%\json.jar" -d "%TEST_CLASSES%" "%TEST_SOURCE%\HelloConnectorSmokeTest.java"
+javac --release 11 -cp "%MAIN_CLASSES%;%SDK_DIR%\ZohoFlow-extension-sdk.jar;%SDK_DIR%\json.jar" -d "%TEST_CLASSES%" "%TEST_SOURCE%\HelloConnectorSmokeTest.java"
 if errorlevel 1 exit /b 1
 
-java -ea -cp "%TEST_CLASSES%;%MAIN_CLASSES%;%SDK_DIR%\ZFAgentCustom.jar;%SDK_DIR%\json.jar" com.zoho.flow.samples.hello.HelloConnectorSmokeTest
+java -ea -cp "%TEST_CLASSES%;%MAIN_CLASSES%;%SDK_DIR%\ZohoFlow-extension-sdk.jar;%SDK_DIR%\json.jar" com.zoho.flow.samples.hello.HelloConnectorSmokeTest
 if errorlevel 1 exit /b 1
 
 jar --create --file "%PACKAGE_DIR%\hello-static\hello-static.jar" --manifest "%SAMPLE_DIR%MANIFEST.MF" -C "%MAIN_CLASSES%" .

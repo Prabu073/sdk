@@ -1,4 +1,4 @@
-# Zoho Flow Custom Class SDK
+# Zoho Flow On-Prem Extension SDK
 
 Current supported language: Java
 SDK version: 1.0.0
@@ -17,8 +17,8 @@ Canonical entry points:
 
 Generation constraints:
 - Do not present Python or Node.js SDKs as available.
-- Compile Java connectors with ZFAgentCustom.jar and json.jar.
-- Do not include ZFAgentCustom.jar or json.jar in connector upload ZIPs.
+- Compile Java connectors with ZohoFlow-extension-sdk.jar and json.jar.
+- Do not include ZohoFlow-extension-sdk.jar or json.jar in connector upload ZIPs.
 - Use only customer-facing APIs documented by the Java API reference.
 - Do not call Agent lifecycle initialization methods.
 - Prefer static fields when the schema is known at implementation time.

@@ -16,7 +16,7 @@ The supported Zoho Flow Agent range is pending product verification. See the SDK
 ## Try the ready-made ZIP
 
 1. Download [`hello-static.zip`](hello-static.zip).
-2. Open the custom-class/library upload interface in Zoho Flow.
+2. Open the on-prem-extension/library upload interface in Zoho Flow.
 3. Use `hello-static` as the library link name if the interface asks for one.
 4. Upload the ZIP.
 5. Select the discovered `sayHello` action.
@@ -78,7 +78,7 @@ hello-static.zip
     └── hello-static.jar
 ```
 
-The archive intentionally excludes `ZFAgentCustom.jar` and `json.jar`; the Agent supplies them at runtime.
+The archive intentionally excludes `ZohoFlow-extension-sdk.jar` and `json.jar`; the Agent supplies them at runtime.
 
 The download checksum is recorded in [`SHA256SUMS`](SHA256SUMS).
 

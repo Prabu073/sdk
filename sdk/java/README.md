@@ -1,15 +1,15 @@
-# Zoho Flow Java Custom Class SDK
+# Zoho Flow Java On-Prem Extension SDK
 
 Version: **1.0.0**  
 Java compilation target: **Java 11**
 
-This SDK provides the customer-facing Java types used to build custom classes for the Zoho Flow On-Prem Agent.
+This SDK provides the customer-facing Java types used to build on-prem extensions for the Zoho Flow On-Prem Agent.
 
 ## Downloaded libraries
 
 The [`lib`](lib/) directory contains:
 
-- [`ZFAgentCustom.jar`](lib/ZFAgentCustom.jar) — custom-class API, annotations, dynamic fields, triggers, long-lived connections, and transformations.
+- [`ZohoFlow-extension-sdk.jar`](lib/ZohoFlow-extension-sdk.jar) — on-prem-extension API, annotations, dynamic fields, triggers, long-lived connections, and transformations.
 - [`json.jar`](lib/json.jar) — JSON-java dependency used by the SDK APIs.
 
 Add both JARs to the compile and local-test classpath. The Agent provides these libraries at runtime, so do **not** include either JAR in a connector upload ZIP.
@@ -39,13 +39,13 @@ Start with the [static-first guide](docs/getting-started.md). It introduces one 
 macOS/Linux:
 
 ```bash
-javac -cp "sdk/java/lib/ZFAgentCustom.jar:sdk/java/lib/json.jar" YourConnector.java
+javac -cp "sdk/java/lib/ZohoFlow-extension-sdk.jar:sdk/java/lib/json.jar" YourConnector.java
 ```
 
 Windows:
 
 ```bat
-javac -cp "sdk\java\lib\ZFAgentCustom.jar;sdk\java\lib\json.jar" YourConnector.java
+javac -cp "sdk\java\lib\ZohoFlow-extension-sdk.jar;sdk\java\lib\json.jar" YourConnector.java
 ```
 
 For complete projects and ready-to-upload archives, browse the [sample catalog](../../samples/README.md).

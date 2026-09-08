@@ -1,11 +1,11 @@
 package com.zoho.flow.samples.hello;
 
-import com.zoho.agent.flow.customclass.AbstractCustomClass;
-import com.zoho.agent.flow.customclass.annotation.Action;
-import com.zoho.agent.flow.customclass.annotation.Description;
+import com.zoho.agent.flow.extension.AbstractExtension;
+import com.zoho.agent.flow.extension.annotation.Action;
+import com.zoho.agent.flow.extension.annotation.Description;
 
 @Description("A minimal connector that returns a greeting")
-public final class HelloConnector extends AbstractCustomClass {
+public final class HelloConnector extends AbstractExtension {
 
     public HelloConnector() {
     }

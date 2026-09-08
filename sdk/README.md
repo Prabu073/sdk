@@ -1,6 +1,6 @@
 # SDKs
 
-This directory contains the language-specific Zoho Flow Custom Class SDK distributions.
+This directory contains the language-specific Zoho Flow On-Prem Extension SDK distributions.
 
 | Language | Status | Documentation |
 |---|---|---|

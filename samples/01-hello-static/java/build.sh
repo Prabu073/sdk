@@ -18,18 +18,18 @@ mkdir -p "$MAIN_CLASSES" "$TEST_CLASSES" "$PACKAGE_DIR/$LIBRARY_NAME"
 
 find "$MAIN_SOURCE_DIR" -name '*.java' -print > "$BUILD_DIR/main-sources.txt"
 javac --release 11 \
-  -cp "$SDK_DIR/ZFAgentCustom.jar:$SDK_DIR/json.jar" \
+  -cp "$SDK_DIR/ZohoFlow-extension-sdk.jar:$SDK_DIR/json.jar" \
   -d "$MAIN_CLASSES" \
   @"$BUILD_DIR/main-sources.txt"
 
 find "$TEST_SOURCE_DIR" -name '*.java' -print > "$BUILD_DIR/test-sources.txt"
 javac --release 11 \
-  -cp "$MAIN_CLASSES:$SDK_DIR/ZFAgentCustom.jar:$SDK_DIR/json.jar" \
+  -cp "$MAIN_CLASSES:$SDK_DIR/ZohoFlow-extension-sdk.jar:$SDK_DIR/json.jar" \
   -d "$TEST_CLASSES" \
   @"$BUILD_DIR/test-sources.txt"
 
 java -ea \
-  -cp "$TEST_CLASSES:$MAIN_CLASSES:$SDK_DIR/ZFAgentCustom.jar:$SDK_DIR/json.jar" \
+  -cp "$TEST_CLASSES:$MAIN_CLASSES:$SDK_DIR/ZohoFlow-extension-sdk.jar:$SDK_DIR/json.jar" \
   com.zoho.flow.samples.hello.HelloConnectorSmokeTest
 
 jar --create \

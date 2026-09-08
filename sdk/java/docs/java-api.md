@@ -1,4 +1,4 @@
-# Zoho Flow Java Custom Class SDK — Source-Verified Reference
+# Zoho Flow Java On-Prem Extension SDK — Source-Verified Reference
 
 ## 1. Scope and source note
 
@@ -10,10 +10,10 @@ No SDK version constant is associated with these packages in the inspected sourc
 
 | Package | Customer-facing purpose                                                                                                                                               |
 |---|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `com.zoho.agent.flow.customclass` | Base classes for connectors and data, field types, exception handling, and access to long-lived connections such as Redis, WebSocket, RPC, SQL connection pools, etc. |
-| `com.zoho.agent.flow.customclass.annotation` | Connector, method, field, and dependency annotations                                                                                                                  |
-| `com.zoho.agent.flow.customclass.dynamic` | Dynamic dropdowns, schemas, and runtime dynamic values                                                                                                                |
-| `com.zoho.agent.flow.customclass.realtime` | Long-lived protocol connections, logical subscriptions, and event delivery                                                                                            |
+| `com.zoho.agent.flow.extension` | Base classes for connectors and data, field types, exception handling, and access to long-lived connections such as Redis, WebSocket, RPC, SQL connection pools, etc. |
+| `com.zoho.agent.flow.extension.annotation` | Connector, method, field, and dependency annotations                                                                                                                  |
+| `com.zoho.agent.flow.extension.dynamic` | Dynamic dropdowns, schemas, and runtime dynamic values                                                                                                                |
+| `com.zoho.agent.flow.extension.realtime` | Long-lived protocol connections, logical subscriptions, and event delivery                                                                                            |
 | `com.zoho.agent.flow.transformation` | Customer-callable POJO-to-JSON and JSON-to-POJO conversion utilities                                                                                                  |
 
 Customer projects may use `JSONSerializer` and `JSONDeserializer` from `com.zoho.agent.flow.transformation`; see section 20.
@@ -22,34 +22,34 @@ Public type inventory:
 
 | Fully qualified type | Kind | Customer role                                                       |
 |---|---|---------------------------------------------------------------------|
-| `com.zoho.agent.flow.customclass.AbstractCustomClass` | abstract class | Extend for the connector                                            |
-| `com.zoho.agent.flow.customclass.CustomClassData` | abstract class | Extend for action, trigger, real-time, and nested data |
-| `com.zoho.agent.flow.customclass.PollingInfo` | final class | Read the configured polling field and previous value |
-| `com.zoho.agent.flow.customclass.AbstractAuthenticationData` | abstract class | Extend for authentication                                           |
-| `com.zoho.agent.flow.customclass.CustomClassException` | checked exception | Create through static factories                                     |
-| `com.zoho.agent.flow.customclass.FieldType` | enum | Select dynamic primitive schema types                               |
-| `com.zoho.agent.flow.customclass.LongLivedConnectionManager` | final utility | Access a long-lived connection                                      |
-| `com.zoho.agent.flow.customclass.dynamic.Dynamic` | abstract class | Framework hierarchy; do not extend directly                         |
-| `com.zoho.agent.flow.customclass.dynamic.DynamicDropdown` | abstract class | Extend/instantiate anonymously for remote choices                   |
-| `com.zoho.agent.flow.customclass.dynamic.DropdownOption` | final class | Dropdown metadata value                                             |
-| `com.zoho.agent.flow.customclass.dynamic.DynamicField<T>` | abstract class | Extend/instantiate anonymously for a dynamic root                   |
-| `com.zoho.agent.flow.customclass.dynamic.DynamicInput` | abstract class | Extend for dynamic action input                                     |
-| `com.zoho.agent.flow.customclass.dynamic.DynamicOutput<I>` | abstract class | Extend for dynamic action output                                    |
-| `com.zoho.agent.flow.customclass.dynamic.FieldSchema` | abstract class | Metadata hierarchy; use shipped concrete nodes                      |
-| `com.zoho.agent.flow.customclass.dynamic.DynamicStructure` | abstract class | Root/nested structure hierarchy; use shipped concrete nodes         |
-| `com.zoho.agent.flow.customclass.dynamic.DynamicObject` | final class | Object schema/value                                                 |
-| `com.zoho.agent.flow.customclass.dynamic.DynamicArray` | final class | Object-array schema/value                                           |
-| `com.zoho.agent.flow.customclass.dynamic.PrimitiveField` | final class | Primitive leaf schema                                               |
-| `com.zoho.agent.flow.customclass.dynamic.PrimitiveArray` | final class | Primitive-array schema/value                                        |
-| `com.zoho.agent.flow.customclass.realtime.LongLivedConnection<A>` | abstract class | Implement a long-lived protocol connection                          |
-| `com.zoho.agent.flow.customclass.realtime.Subscription<C,I,O>` | abstract class | Implement a logical real-time subscription                          |
-| `com.zoho.agent.flow.customclass.realtime.FlowListener<O>` | functional interface | Framework-provided event destination; do not implement/call directly |
+| `com.zoho.agent.flow.extension.AbstractExtension` | abstract class | Extend for the connector                                            |
+| `com.zoho.agent.flow.extension.ExtensionData` | abstract class | Extend for action, trigger, real-time, and nested data |
+| `com.zoho.agent.flow.extension.PollingInfo` | final class | Read the configured polling field and previous value |
+| `com.zoho.agent.flow.extension.AbstractAuthenticationData` | abstract class | Extend for authentication                                           |
+| `com.zoho.agent.flow.extension.ExtensionException` | checked exception | Create through static factories                                     |
+| `com.zoho.agent.flow.extension.FieldType` | enum | Select dynamic primitive schema types                               |
+| `com.zoho.agent.flow.extension.LongLivedConnectionManager` | final utility | Access a long-lived connection                                      |
+| `com.zoho.agent.flow.extension.dynamic.Dynamic` | abstract class | Framework hierarchy; do not extend directly                         |
+| `com.zoho.agent.flow.extension.dynamic.DynamicDropdown` | abstract class | Extend/instantiate anonymously for remote choices                   |
+| `com.zoho.agent.flow.extension.dynamic.DropdownOption` | final class | Dropdown metadata value                                             |
+| `com.zoho.agent.flow.extension.dynamic.DynamicField<T>` | abstract class | Extend/instantiate anonymously for a dynamic root                   |
+| `com.zoho.agent.flow.extension.dynamic.DynamicInput` | abstract class | Extend for dynamic action input                                     |
+| `com.zoho.agent.flow.extension.dynamic.DynamicOutput<I>` | abstract class | Extend for dynamic action output                                    |
+| `com.zoho.agent.flow.extension.dynamic.FieldSchema` | abstract class | Metadata hierarchy; use shipped concrete nodes                      |
+| `com.zoho.agent.flow.extension.dynamic.DynamicStructure` | abstract class | Root/nested structure hierarchy; use shipped concrete nodes         |
+| `com.zoho.agent.flow.extension.dynamic.DynamicObject` | final class | Object schema/value                                                 |
+| `com.zoho.agent.flow.extension.dynamic.DynamicArray` | final class | Object-array schema/value                                           |
+| `com.zoho.agent.flow.extension.dynamic.PrimitiveField` | final class | Primitive leaf schema                                               |
+| `com.zoho.agent.flow.extension.dynamic.PrimitiveArray` | final class | Primitive-array schema/value                                        |
+| `com.zoho.agent.flow.extension.realtime.LongLivedConnection<A>` | abstract class | Implement a long-lived protocol connection                          |
+| `com.zoho.agent.flow.extension.realtime.Subscription<C,I,O>` | abstract class | Implement a logical real-time subscription                          |
+| `com.zoho.agent.flow.extension.realtime.FlowListener<O>` | functional interface | Framework-provided event destination; do not implement/call directly |
 | `com.zoho.agent.flow.transformation.JSONSerializer` | final utility | Convert a customer POJO to a JSON-compatible value                  |
 | `com.zoho.agent.flow.transformation.JSONDeserializer` | final utility | Convert JSON text to a customer POJO or list                        |
 
 ## 3. Connector base classes
 
-### `com.zoho.agent.flow.customclass.AbstractCustomClass`
+### `com.zoho.agent.flow.extension.AbstractExtension`
 
 Purpose: base of the one connector class scanned by the Agent. It has an implicit public no-argument constructor when the subclass declares none.
 
@@ -61,7 +61,7 @@ The connector class must be instantiable through an accessible no-argument const
 
 ```java
 @Authentication(ApiAuth.class)
-public final class ExampleConnector extends AbstractCustomClass {
+public final class ExampleConnector extends AbstractExtension {
     @Action
     public Pong ping(Ping input) {
         ApiAuth auth = (ApiAuth) getAuthentication();
@@ -72,12 +72,12 @@ public final class ExampleConnector extends AbstractCustomClass {
 }
 ```
 
-### `com.zoho.agent.flow.customclass.LongLivedConnectionManager`
+### `com.zoho.agent.flow.extension.LongLivedConnectionManager`
 
 Final utility with no public constructor.
 
 ```java
-public static <C extends LongLivedConnection<?>> C getConnection(AbstractCustomClass customClass) throws Exception
+public static <C extends LongLivedConnection<?>> C getConnection(AbstractExtension extension) throws Exception
 ```
 
 Real-time triggers do not need to call this manager. The Agent creates, caches, reuses, and closes their long-lived connections automatically. An action may call this method only when it deliberately needs access to the same long-lived connection declared by its authentication. Customer code must not instantiate, cache, or close that connection itself.
@@ -92,7 +92,7 @@ ProtocolConnection connection = LongLivedConnectionManager.getConnection(this);
 
 All customer model classes should be public and have an accessible no-argument constructor. The deserializer invokes `getDeclaredConstructor().newInstance()` without making the constructor accessible.
 
-### `CustomClassData`
+### `ExtensionData`
 
 Unified base for action, polling-trigger, real-time-trigger, and nested static models. For polling triggers only, the Agent injects configuration-owned `PollingInfo` into the input POJO before invoking the method.
 
@@ -103,7 +103,7 @@ Unified base for action, polling-trigger, real-time-trigger, and nested static m
 
 ### `AbstractAuthenticationData`
 
-Authentication is a separate framework model and does not extend `CustomClassData`.
+Authentication is a separate framework model and does not extend `ExtensionData`.
 
 | Method | Customer use |
 |---|---|
@@ -127,8 +127,8 @@ public final class ApiAuth extends AbstractAuthenticationData {
 
 | Class | Superclass | Generic bound | Intended use |
 |---|---|---|---|
-| `DynamicInput` | `CustomClassData` | — | Action or trigger input containing top-level dynamic members |
-| `DynamicOutput<I>` | `CustomClassData` | `I extends CustomClassData` | Action or trigger output whose schema depends on configured input |
+| `DynamicInput` | `ExtensionData` | — | Action or trigger input containing top-level dynamic members |
+| `DynamicOutput<I>` | `ExtensionData` | `I extends ExtensionData` | Action or trigger output whose schema depends on configured input |
 
 Each exposes protected authentication through `getAuthentication()`. `DynamicOutput` also exposes `protected transient I input` after framework initialization. Agent-owned runtime bridges inject these values through package-private lifecycle methods that are not included in the customer SDK artifact.
 
@@ -165,7 +165,7 @@ All have runtime retention.
 @Action public List<Output> runBatch(List<Input> input) throws Exception;
 ```
 
-`Input` and `Output` must extend `CustomClassData`. Raw collections and non-concrete element types are rejected. The scanner recognizes `List`, not an arbitrary collection contract. The method must be public, declared on the connector class, and accept exactly one argument.
+`Input` and `Output` must extend `ExtensionData`. Raw collections and non-concrete element types are rejected. The scanner recognizes `List`, not an arbitrary collection contract. The method must be public, declared on the connector class, and accept exactly one argument.
 
 The source accepts `List` input only for actions. It also accepts either a single action output or `List<Output>`. `throws Exception` is optional Java syntax; exceptions are described in section 21.
 
@@ -175,7 +175,7 @@ The source accepts `List` input only for actions. It also accepts either a singl
 @PollingTrigger public List<Event> poll(PollInput input) throws Exception;
 ```
 
-`PollInput` and `Event` extend `CustomClassData`. Polling input cannot be a list. A polling trigger must return `List<Event>`; a single `Event` return is not accepted by the scanner. The schedule, batch limit, and retry schedule are not guaranteed by the inspected SDK source.
+`PollInput` and `Event` extend `ExtensionData`. Polling input cannot be a list. A polling trigger must return `List<Event>`; a single `Event` return is not accepted by the scanner. The schedule, batch limit, and retry schedule are not guaranteed by the inspected SDK source.
 
 ## 8. Polling cursor behavior
 
@@ -201,13 +201,13 @@ public OrdersSubscription orders(OrdersInput input) {
 }
 ```
 
-`OrdersInput extends CustomClassData`. The concrete return class extends:
+`OrdersInput extends ExtensionData`. The concrete return class extends:
 
 ```java
 Subscription<ConcreteConnection, OrdersInput, OrdersOutput>
 ```
 
-`ConcreteConnection extends LongLivedConnection<? extends AbstractAuthenticationData>` and `OrdersOutput extends CustomClassData`. The method input must equal the resolved subscription input type. The scanner resolves concrete `C`, `I`, and `O` through a parameterized inheritance chain; unresolved type variables are rejected.
+`ConcreteConnection extends LongLivedConnection<? extends AbstractAuthenticationData>` and `OrdersOutput extends ExtensionData`. The method input must equal the resolved subscription input type. The scanner resolves concrete `C`, `I`, and `O` through a parameterized inheritance chain; unresolved type variables are rejected.
 
 The same inheritance-aware generic resolver is used during metadata scanning and runtime activation. Intermediate parameterized subscription base classes are supported when all three types resolve concretely; unresolved type variables are rejected before activation.
 
@@ -223,7 +223,7 @@ The same inheritance-aware generic resolver is used during metadata scanning and
 | `double` / `Double` | `DOUBLE` | repeated double |
 | `java.util.Date` | `DATE_TIME` | repeated date-time |
 | enum | Choice field, handled automatically | enum array/list becomes a multiple-choice field |
-| `CustomClassData` subtype | Nested object, handled automatically | array/list becomes a repeated nested object |
+| `ExtensionData` subtype | Nested object, handled automatically | array/list becomes a repeated nested object |
 
 Public instance fields are the simplest reliable model. Static and internal-key fields are excluded from metadata. Final fields are excluded from serialization and deserialization; because metadata scanning does include them, they appear in the Flow configuration UI but are always null or their initial value at runtime — do not declare data fields `final`.
 
@@ -232,13 +232,13 @@ The abstract `Number` class, maps, arbitrary POJOs, and Java time types are not 
 Although `FieldType` recognizes `Date` subclasses for metadata, the deserializer's date conversion is implemented for the exact `java.util.Date` type. Use `java.util.Date`, not a custom subclass, for reliable input deserialization. Authentication metadata retains only scalar supported fields; arrays and nested object fields are filtered out.
 
 ```java
-public final class CreateInput extends CustomClassData {
+public final class CreateInput extends ExtensionData {
     @Label("Display name") @Description("Name sent to the service") public String name;
     @Optional public String note;
     public String[] tags;
     public Address address;
 }
-public final class Address extends CustomClassData { public String city; }
+public final class Address extends ExtensionData { public String city; }
 ```
 
 ## 11. Dynamic-field lifecycle
@@ -463,7 +463,7 @@ The key must be nonblank when activated. The Agent initializes and subscribes th
 
 Connection-type resolution, initialization, and subscription activation are package-private and performed through an Agent-only runtime bridge. Do not call `close` from connector trigger code; the Agent closes subscriptions during deactivation and project cleanup.
 
-`FlowListener<O extends CustomClassData>` is a public functional interface with `void emit(O output)`. It is Agent-provided to the internal activation path, not a customer extension point in a connector project.
+`FlowListener<O extends ExtensionData>` is a public functional interface with `void emit(O output)`. It is Agent-provided to the internal activation path, not a customer extension point in a connector project.
 
 ```java
 public final class OrdersSubscription extends Subscription<ProtocolConnection, OrdersInput, OrderEvent> {
@@ -498,7 +498,7 @@ List<CreateUserInput> inputs = JSONDeserializer.convertList(jsonArrayText, Creat
 Example POJO:
 
 ```java
-public final class CreateUserInput extends CustomClassData {
+public final class CreateUserInput extends ExtensionData {
     public String name;
     public Integer age;
     public java.util.Date createdAt;
@@ -507,7 +507,7 @@ public final class CreateUserInput extends CustomClassData {
     public List<String> tags;
 }
 
-public final class Address extends CustomClassData {
+public final class Address extends ExtensionData {
     public String city;
 }
 
@@ -535,18 +535,18 @@ Deserialization requires an accessible no-argument constructor and uses a setter
 
 ## 21. Validation and exception behavior
 
-`CustomClassException extends Exception` has no public constructor. Create one with:
+`ExtensionException extends Exception` has no public constructor. Create one with:
 
 ```java
-CustomClassException.retryable(message);
-CustomClassException.retryable(message, cause);
-CustomClassException.nonRetryable(message);
-CustomClassException.nonRetryable(message, cause);
+ExtensionException.retryable(message);
+ExtensionException.retryable(message, cause);
+ExtensionException.nonRetryable(message);
+ExtensionException.nonRetryable(message, cause);
 ```
 
 `isRetryable()` exposes the classification. Use retryable only for transient failures and non-retryable for bad credentials/configuration or unsupported data.
 
-Throw `CustomClassException` deliberately when the connector can classify a failure. Exact transport formatting and server retry policy are not guaranteed by the inspected SDK source.
+Throw `ExtensionException` deliberately when the connector can classify a failure. Exact transport formatting and server retry policy are not guaranteed by the inspected SDK source.
 
 Metadata and value validation commonly throws `IllegalArgumentException`, unresolved state throws `IllegalStateException`, and attempts to mutate read-only dynamic input throw `UnsupportedOperationException`.
 
@@ -554,7 +554,7 @@ Metadata and value validation commonly throws `IllegalArgumentException`, unreso
 
 | API | Customer role |
 |---|---|
-| `AbstractCustomClass.getAuthentication()` | Call from subclass |
+| `AbstractExtension.getAuthentication()` | Call from subclass |
 | Dynamic base `getAuthentication()` and output `input` | Read in subclass, primarily during `load()` |
 | `DynamicDropdown.load()` | Implement; framework calls |
 | Dropdown getters | Call after configuration/execution resolution |
@@ -563,7 +563,7 @@ Metadata and value validation commonly throws `IllegalArgumentException`, unreso
 | `DynamicField.create()` | Call for execution output |
 | Schema constructors/mutators | Call while building schema |
 | Dynamic value access and mutation methods | Call according to read-only/writable phase |
-| `CustomClassData.getPollingInfo()` and typed `PollingInfo` getters | Customer polling logic |
+| `ExtensionData.getPollingInfo()` and typed `PollingInfo` getters | Customer polling logic |
 | Authentication connection-ID/modified-time getters | Customer read |
 | `LongLivedConnectionManager.getConnection(this)` | Customer action call |
 | Connection `connect`, subscribe/unsubscribe hooks, `close` | Implement; framework calls |
@@ -589,10 +589,10 @@ Metadata and value validation commonly throws `IllegalArgumentException`, unreso
 
 ## 24. LLM/project-generator correctness checklist
 
-- [ ] Connector extends `AbstractCustomClass`, is public, and has an accessible no-arg constructor.
+- [ ] Connector extends `AbstractExtension`, is public, and has an accessible no-arg constructor.
 - [ ] Every model instantiated by the Agent is public with an accessible no-arg constructor.
 - [ ] Each exposed method is public, declared on the connector, and has exactly one method annotation.
-- [ ] Every action, polling-trigger, real-time-trigger, and nested data model extends `CustomClassData`.
+- [ ] Every action, polling-trigger, real-time-trigger, and nested data model extends `ExtensionData`.
 - [ ] Polling logic reads Agent-injected `PollingInfo`; output records do not set a last-polled value.
 - [ ] Polling trigger returns `List<Output>`.
 - [ ] Batch actions use parameterized `List<Input>` and `List<Output>`.
@@ -608,4 +608,4 @@ Metadata and value validation commonly throws `IllegalArgumentException`, unreso
 - [ ] Subscription C, I, and O types resolve to concrete classes (direct declaration or through a parameterized chain; unresolved type variables are rejected).
 - [ ] Connector never calls framework lifecycle bridges.
 - [ ] Customer-owned clients/helpers are clearly separated from SDK APIs.
-- [ ] Transient vs permanent failures use the intended `CustomClassException` factory.
+- [ ] Transient vs permanent failures use the intended `ExtensionException` factory.

@@ -3,13 +3,13 @@
 Difficulty: **Beginner**  
 Estimated time: **5 minutes with the ready-made ZIP; 15 minutes when building from source**
 
-This is the smallest complete Zoho Flow custom class. It exposes one `sayHello` action, accepts a static `name` field, and returns a static `message` field.
+This is the smallest complete Zoho Flow on-prem extension. It exposes one `sayHello` action, accepts a static `name` field, and returns a static `message` field.
 
 It demonstrates:
 
-- Extending `AbstractCustomClass`.
+- Extending `AbstractExtension`.
 - Marking a public method with `@Action`.
-- Defining input and output models with `CustomClassData`.
+- Defining input and output models with `ExtensionData`.
 - Using labels and descriptions in Flow metadata.
 - Packaging a connector without bundling SDK-provided JARs.
 

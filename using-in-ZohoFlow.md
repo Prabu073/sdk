@@ -1,23 +1,34 @@
 # Use an On-Prem Extension in Zoho Flow
 
-An On-Prem Extension turns code that can reach a local system, file, database, or device into an action that can be used in a Zoho Flow.
+Your on-prem infrastructure holds systems that no cloud connector can reach — databases behind a firewall, ERP and CRM software on a private network, factory-floor devices, IoT sensors, legacy APIs, local file servers. An On-Prem Extension brings them into Zoho Flow as workflow-native actions and triggers.
 
-Use an On-Prem Extension when a Flow needs to:
+You write the connector once, deploy it to an On-Prem Agent running inside your network, and Zoho Flow treats it like any other integration. Your data stays on your network. Any number of Flows can use the same Extension, and each can map its outputs into subsequent steps exactly as they would with a cloud service.
 
-- Reach a service available only from the customer's network.
-- Read or write local files, databases, or business systems.
-- Interact with local devices such as printers.
-- Run customer-specific business logic as part of an automated workflow.
+An Extension can be as simple as a single action that reads a row from a local database, or as rich as a set of real-time triggers that push events the moment they occur on your network.
+
+## What you can connect
+
+Any service, device, or system your On-Prem Agent can reach:
+
+- On-premises databases, file servers, and message queues
+- Factory-floor controllers, IoT sensors, and industrial devices
+- Internal ERP, CRM, or legacy business applications
+- Private APIs not accessible from the internet
+- Custom business logic specific to your organisation
 
 ## How it fits into a Flow
 
 ```text
-Extension ZIP → On-Prem Agent → Use in a Flow → output for later steps
+your network → On-Prem Agent → Extension code → Zoho Flow step
 ```
 
-The ZIP contains the customer's compiled Extension and any customer-owned runtime dependencies. After deployment, Zoho Flow discovers its triggers, actions, and fields. When a Flow reaches an Extension trigger or action, the selected On-Prem Agent runs the Extension code and returns its output to the Flow.
+Zoho Flow discovers the Extension's actions and triggers automatically from the uploaded package — no API endpoints to write, no webhooks to configure. In a Flow, an Extension step works exactly like a cloud service step: input fields can be filled directly or mapped from earlier steps, and outputs are available to every step that follows.
 
-An Extension is used as an action step: its inputs can be entered directly or mapped from earlier steps, and its outputs can be mapped into later steps.
+An Extension can expose:
+
+- **Actions** — called on demand when a Flow reaches that step
+- **Polling triggers** — checked on a schedule; new events start a Flow run
+- **Real-time triggers** — connected continuously; events are delivered the moment they occur
 
 ## Try a ready-made ZIP
 

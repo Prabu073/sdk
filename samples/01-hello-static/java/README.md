@@ -16,11 +16,10 @@ The supported Zoho Flow Agent range is pending product verification. See the SDK
 ## Try the ready-made ZIP
 
 1. Download [`hello-static.zip`](hello-static.zip).
-2. Open the on-prem-extension/library upload interface in Zoho Flow.
-3. Use `hello-static` as the library link name if the interface asks for one.
-4. Upload the ZIP.
-5. Select the discovered `sayHello` action.
-6. Set **Name** to `Ada` and run the action.
+2. Upload it as an On-Prem Extension named `hello-static` and deploy it to an On-Prem Agent.
+3. During review, confirm that Zoho Flow detects the Java Extension and its `sayHello` action.
+4. In the Flow builder, add the `sayHello` action from the deployed `hello-static` Extension.
+5. Set **Name** to `Ada` and run the Flow.
 
 Expected output:
 
@@ -29,6 +28,8 @@ Expected output:
   "message": "Hello, Ada!"
 }
 ```
+
+For the complete ZIP-to-Flow path, see [Use an On-Prem Extension in Zoho Flow](../../../sdk/java/docs/using-in-flow.md).
 
 ## Source layout
 

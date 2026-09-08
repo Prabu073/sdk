@@ -1,6 +1,6 @@
 # Zoho Flow Java On-Prem Extensions — Static-First Customer Guide
 
-This guide helps a Java developer build a first working custom connector quickly, then add advanced capabilities only when the integration needs them.
+This guide helps a Java developer build a first working On-Prem Extension quickly, then add advanced capabilities only when the integration needs them.
 
 The SDK source is authoritative. Classes such as `CustomerApi`, `SpreadsheetClient`, `CsvSupport`, `DatabaseClient`, and `ProtocolClient` used in examples are placeholders for customer-owned code; they are not SDK classes.
 

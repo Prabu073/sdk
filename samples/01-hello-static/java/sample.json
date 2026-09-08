@@ -22,7 +22,7 @@
     "output": "hello-static.zip"
   },
   "upload": {
-    "libraryLinkName": "hello-static",
+    "extensionName": "hello-static",
     "topLevelDirectory": "hello-static",
     "includesSdkJar": false,
     "includesJsonJar": false

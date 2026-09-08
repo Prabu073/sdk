@@ -1,6 +1,6 @@
 # Zoho Flow On-Prem Extension SDK
 
-The Zoho Flow On-Prem Extension SDK helps developers build Java integrations that run through the Zoho Flow On-Prem Agent. A on-prem extension can expose actions, polling triggers, real-time triggers, dynamic configuration fields, and integrations with services or devices reachable from the Agent.
+The Zoho Flow On-Prem Extension SDK helps developers build Java integrations that run through the Zoho Flow On-Prem Agent. An On-Prem Extension can expose actions, polling triggers, real-time triggers, dynamic configuration fields, and integrations with services or devices reachable from the Agent.
 
 This repository contains the customer-facing SDK artifacts and their documentation. It does not contain the Zoho Flow Agent implementation.
 

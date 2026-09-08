@@ -14,17 +14,16 @@ Compile customer projects with:
 
 The Agent supplies the SDK and JSON-java at runtime. Do not package `ZohoFlow-extension-sdk.jar` or `json.jar` in the connector upload.
 
-Use this layout for a Java connector:
+Use this layout for a Java Extension:
 
 ```text
-<library-name>.zip
-└── <library-name>/
+<extension-name>.zip
+└── <extension-name>/
     ├── <connector>.jar
-    └── lib/
-        └── <customer-runtime-dependency>.jar
+    └── <customer-runtime-dependency>.jar
 ```
 
-The ZIP has one top-level directory matching the library link name. Customer runtime dependencies can be placed under `lib/`. Do not include source files, test classes, credentials, build caches, or Agent implementation JARs.
+The ZIP has one top-level directory matching the Extension name used for packaging. Place all customer runtime dependency JARs at the same level as the connector JAR — the Agent does not read nested directories. Do not include source files, test classes, credentials, build caches, or Agent implementation JARs.
 
 ## Dependency rules
 

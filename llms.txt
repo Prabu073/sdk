@@ -11,15 +11,18 @@ Canonical entry points:
 - sdk/java/docs/java-api.md
 - sdk/java/docs/transformation.md
 - sdk/java/docs/packaging.md
+- sdk/java/docs/using-in-flow.md
 - sdk/java/compatibility.json
 - samples/README.md
 - samples/catalog.json
 
 Generation constraints:
+- Use "On-Prem Extension" consistently in customer-facing prose.
 - Do not present Python or Node.js SDKs as available.
 - Compile Java connectors with ZohoFlow-extension-sdk.jar and json.jar.
 - Do not include ZohoFlow-extension-sdk.jar or json.jar in connector upload ZIPs.
 - Use only customer-facing APIs documented by the Java API reference.
 - Do not call Agent lifecycle initialization methods.
 - Prefer static fields when the schema is known at implementation time.
+- Treat the ready-made sample ZIP as an intact upload artifact. After deployment, its discovered actions run through the selected On-Prem Agent inside a Flow.
 - Discover implemented samples and language variants through samples/catalog.json.

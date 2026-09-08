@@ -32,7 +32,7 @@ Start with the [static-first guide](docs/getting-started.md). It introduces one 
 | POJO and JSON transformation | [Transformation reference](docs/transformation.md) |
 | Complete API contract | [Java API reference](docs/java-api.md) |
 | Packaging | [Packaging and dependencies](docs/packaging.md) |
-| Uploading and using an Extension in a Flow | [ZIP-to-Flow guide](../../using-in-ZohoFlow.md) |
+| Uploading and using an Extension in a Flow | [ZIP-to-Flow guide](../../README.md#deploy-to-zoho-flow) |
 | SDK and Agent versions | [Compatibility](docs/compatibility.md) |
 
 ## Compile classpath

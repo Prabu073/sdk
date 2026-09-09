@@ -16,4 +16,4 @@ Packaging rules are language-specific. Select the language you are building for:
 
 | Language | Packaging guide |
 |---|---|
-| Java | [Packaging and dependencies](java/docs/packaging.md) |
+| Java | [Packaging and dependencies](java/packaging.md) |

@@ -75,4 +75,4 @@ If `name` is absent, empty, or whitespace-only, the action returns `Hello, World
 
 Edit the files under `source/src/main/java`, run `mvn package` again from the `source/` directory, and upload the newly generated ZIP. Keep all framework-created classes public with accessible no-argument constructors, and keep input/output fields non-final.
 
-For the complete contract, read the [Java API reference](../../../sdk/java/docs/java-api.md).
+For the complete contract, read the [Java API reference](../../../docs/java/java-api.md).

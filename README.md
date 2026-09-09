@@ -34,13 +34,13 @@ A single Extension can expose multiple actions and triggers, handle authenticati
 
 | Language | Status | SDK |
 |---|---|---|
-| Java | Available | [Open the Java SDK](sdk/java/README.md) |
+| Java | Available | [Open the Java SDK](docs/java/README.md) |
 | Python | Not currently available | — |
 | Node.js | Not currently available | — |
 
 ## Start here
 
-1. Choose a language from the [SDK index](sdk/README.md) and open its overview.
+1. Choose a language from the [SDK index](docs/README.md) and open its overview.
 2. Follow the getting-started guide for that language.
 3. Use the language API reference when adding advanced capabilities.
 4. Check compatibility metadata before packaging an Extension.
@@ -73,11 +73,14 @@ Download a ready-made sample ZIP and upload it to Zoho Flow to see an Extension 
 ## Repository map
 
 ```text
-sdk/
-  README.md           SDK and language index, packaging guide
+docs/
+  README.md           Language index
   java/
-    README.md         Java SDK overview and documentation index
-    docs/             Java API reference, guides, and compatibility
+    README.md         Java SDK overview and dependency setup
+    getting-started.md
+    java-api.md
+    packaging.md
+    transformation.md
 samples/
   README.md           Sample catalog
 ```

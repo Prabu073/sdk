@@ -6,11 +6,11 @@ Java target: 11
 
 Canonical entry points:
 - README.md
-- sdk/java/README.md
-- sdk/java/docs/getting-started.md
-- sdk/java/docs/java-api.md
-- sdk/java/docs/transformation.md
-- sdk/java/docs/packaging.md
+- docs/java/README.md
+- docs/java/getting-started.md
+- docs/java/java-api.md
+- docs/java/transformation.md
+- docs/java/packaging.md
 - samples/README.md
 
 Generation constraints:

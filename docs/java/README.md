@@ -44,22 +44,22 @@ The ZIP contains `zohoflow-onprem-extension-sdk.jar` and `json.jar`. The Agent p
 
 ## First connector
 
-Start with the [static-first guide](docs/getting-started.md). It introduces one action with static input and output before adding authentication, dynamic fields, polling, or real-time behavior.
+Start with the [static-first guide](getting-started.md). It introduces one action with static input and output before adding authentication, dynamic fields, polling, or real-time behavior.
 
 ## Concepts
 
 | Concept | Documentation |
 |---|---|
-| Connector, input, and output classes | [Getting started](docs/getting-started.md) |
-| Static fields and annotations | [Getting started: static fields](docs/getting-started.md#2-static-fields-and-annotations) |
-| Authentication | [Getting started: authentication](docs/getting-started.md#3-add-authentication-when-required) |
-| Dynamic fields and dropdowns | [Getting started: dynamic fields](docs/getting-started.md#5-dynamic-field-mental-model) |
-| Polling triggers | [Getting started: polling](docs/getting-started.md#15-polling-trigger) |
-| Real-time triggers | [Getting started: real-time](docs/getting-started.md#17-real-time-triggers-and-long-lived-connections) |
-| Long-lived connections | [Java API reference](docs/java-api.md#17-long-lived-connection-lifecycle) |
-| POJO and JSON transformation | [Transformation reference](docs/transformation.md) |
-| Complete API contract | [Java API reference](docs/java-api.md) |
-| Packaging | [Packaging and dependencies](docs/packaging.md) |
+| Connector, input, and output classes | [Getting started](getting-started.md) |
+| Static fields and annotations | [Getting started: static fields](getting-started.md#2-static-fields-and-annotations) |
+| Authentication | [Getting started: authentication](getting-started.md#3-add-authentication-when-required) |
+| Dynamic fields and dropdowns | [Getting started: dynamic fields](getting-started.md#5-dynamic-field-mental-model) |
+| Polling triggers | [Getting started: polling](getting-started.md#15-polling-trigger) |
+| Real-time triggers | [Getting started: real-time](getting-started.md#17-real-time-triggers-and-long-lived-connections) |
+| Long-lived connections | [Java API reference](java-api.md#17-long-lived-connection-lifecycle) |
+| POJO and JSON transformation | [Transformation reference](transformation.md) |
+| Complete API contract | [Java API reference](java-api.md) |
+| Packaging | [Packaging and dependencies](packaging.md) |
 | Uploading and using an Extension in a Flow | [ZIP-to-Flow guide](../../README.md#deploy-to-zoho-flow) |
 
 ## Compile classpath

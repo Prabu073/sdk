@@ -37,7 +37,7 @@ The ZIP has one top-level directory matching the Extension name used for packagi
 - Keep third-party integrations behind customer-owned client classes.
 - Pin dependency versions and review their licenses.
 - Avoid bundling classes under `com.zoho.agent.flow.*` or `org.json.*`.
-- Compile for Java 11 unless the compatibility metadata documents another target.
+- Compile for Java 11.
 - Test the final ZIP, rather than only the connector JAR.
 
 The sample connectors in this repository use the Maven Assembly Plugin to produce upload-ready ZIPs automatically on `mvn package`.

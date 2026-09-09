@@ -30,7 +30,7 @@ repositories {
     maven { url 'https://maven.zohodl.com/flow' }
 }
 dependencies {
-    implementation 'com.zoho.flow:zohoflow-onprem-extension-sdk:1.0.0'
+    compileOnly 'com.zoho.flow:zohoflow-onprem-extension-sdk:1.0.0'
 }
 ```
 

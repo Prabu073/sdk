@@ -18,7 +18,7 @@ Any service, device, or system your On-Prem Agent can reach:
 your network → On-Prem Agent → Extension code → Zoho Flow step
 ```
 
-Build an Extension, deploy it to a Zoho Flow On-Prem Agent running inside your network, and Zoho Flow treats it like any other integration. Your data stays on your network. Any number of Flows can use the same Extension, and each can map its outputs into subsequent steps exactly as they would with a cloud service.
+Build an Extension, deploy it to a Zoho Flow On-Prem Agent running inside your network, and Zoho Flow treats it like any other integration. Your private systems remain inside your network and do not need to be exposed publicly; the On-Prem Agent exchanges action inputs and outputs with Zoho Flow. Multiple Flows can use the same Extension, and each can map its outputs into subsequent steps exactly as it would with a cloud service.
 
 Zoho Flow discovers the Extension's actions and triggers automatically from the uploaded package — no API endpoints to write, no webhooks to configure.
 
@@ -28,7 +28,7 @@ Zoho Flow discovers the Extension's actions and triggers automatically from the 
 - **Polling triggers** — checked on a schedule; new events start a Flow run
 - **Real-time triggers** — connected continuously; events are delivered the moment they occur on your network
 
-A single Extension can expose multiple actions and triggers, handle authentication, serve static or runtime-resolved input fields, and be shared across any number of Flows.
+A single Extension can expose multiple actions and triggers, handle authentication, serve static or runtime-resolved input fields, and be shared across multiple Flows.
 
 ## Language support
 
@@ -43,8 +43,7 @@ A single Extension can expose multiple actions and triggers, handle authenticati
 1. Choose a language from the [SDK index](docs/README.md) and open its overview.
 2. Follow the getting-started guide for that language.
 3. Use the language API reference when adding advanced capabilities.
-4. Check compatibility metadata before packaging an Extension.
-5. Upload and use your Extension in Zoho Flow — see [Deploy to Zoho Flow](#deploy-to-zoho-flow) below.
+4. Upload and use your Extension in Zoho Flow — see [Deploy to Zoho Flow](#deploy-to-zoho-flow) below.
 
 ## Deploy to Zoho Flow
 
@@ -89,10 +88,7 @@ samples/
 
 This repository is available under the [MIT License](LICENSE.txt).
 
-Third-party components retain their respective terms. See the third-party notices in each language SDK directory.
-
-## Support and security
+## Support and release history
 
 - [Support policy](SUPPORT.md)
-- [Security reporting](SECURITY.md)
 - [Release history](CHANGELOG.md)

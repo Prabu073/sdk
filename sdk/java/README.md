@@ -96,4 +96,4 @@ Version `1.0.0` is currently assigned by this distribution. The supplied JAR man
 
 ## Licensing
 
-The SDK repository is available under the [MIT License](../../LICENSE.txt). The bundled JSON-java dependency retains its own terms, documented in the Java SDK [third-party notices](third_party_licenses/README.md).
+The SDK repository is available under the [MIT License](../../LICENSE.txt). The `json.jar` transitive dependency (`org.json:json:20231013`) is Public Domain — see the [upstream project](https://github.com/stleary/JSON-java).

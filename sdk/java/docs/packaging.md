@@ -4,11 +4,18 @@ This document distinguishes the libraries used to compile a connector from the l
 
 ## Compile and local-test classpath
 
-Compile customer projects with:
+Declare the SDK as a `provided` dependency — Maven resolves the classpath and excludes the SDK from the connector JAR automatically:
 
-- `ZohoFlow-extension-sdk.jar`
-- `json.jar`
-- Any third-party libraries directly used by the connector
+```xml
+<dependency>
+    <groupId>com.zoho.flow</groupId>
+    <artifactId>zohoflow-onprem-extension-sdk</artifactId>
+    <version>1.0.0</version>
+    <scope>provided</scope>
+</dependency>
+```
+
+`json.jar` (`org.json:json:20231013`) is a transitive dependency declared in the SDK POM — Maven includes it on the compile classpath without any extra declaration. Add any other third-party libraries your connector uses as regular `compile`-scope dependencies.
 
 ## Upload ZIP
 
@@ -33,4 +40,4 @@ The ZIP has one top-level directory matching the Extension name used for packagi
 - Compile for Java 11 unless the compatibility metadata documents another target.
 - Test the final ZIP, rather than only the connector JAR.
 
-Ready-made ZIPs and automated packaging commands will be introduced with the sample applications.
+The sample connectors in this repository use the Maven Assembly Plugin to produce upload-ready ZIPs automatically on `mvn package`.

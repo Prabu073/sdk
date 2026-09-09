@@ -35,41 +35,26 @@ For the complete upload and deployment steps, see [Deploy to Zoho Flow](../../..
 
 ```text
 source/
+├── pom.xml
 └── src/
-    ├── main/java/com/zoho/flow/samples/hello/
-    │   ├── HelloConnector.java
-    │   ├── HelloInput.java
-    │   └── HelloOutput.java
-    └── test/java/com/zoho/flow/samples/hello/
-        └── HelloConnectorSmokeTest.java
+    └── main/java/com/zoho/flow/samples/hello/
+        ├── HelloConnector.java
+        ├── HelloInput.java
+        └── HelloOutput.java
 ```
 
 ## Build from source
 
-Prerequisites:
-
-- JDK 11 or newer with `javac`, `java`, and `jar` available.
-- `zip` on macOS/Linux, or PowerShell on Windows.
-- This complete repository checkout, because the script uses the SDK JARs under `sdk/java/lib`.
-
-macOS/Linux:
+Prerequisites: JDK 11 or newer and Maven 3.6+.
 
 ```bash
-./build.sh
+cd source
+mvn package
 ```
 
-Windows:
+Maven downloads the SDK automatically, compiles the connector, and produces the upload-ready ZIP.
 
-```bat
-build.bat
-```
-
-The build:
-
-1. Compiles the connector for Java 11.
-2. Compiles and runs the dependency-free smoke test.
-3. Creates the customer connector JAR.
-4. Packages `hello-static.zip` using the required top-level directory.
+The output ZIP is at `source/target/hello-static.zip`.
 
 ## Upload ZIP contents
 
@@ -79,9 +64,7 @@ hello-static.zip
     └── hello-static.jar
 ```
 
-The archive intentionally excludes `ZohoFlow-extension-sdk.jar` and `json.jar`; the Agent supplies them at runtime.
-
-The download checksum is recorded in [`SHA256SUMS`](SHA256SUMS).
+`ZohoFlow-extension-sdk.jar` and `json.jar` are excluded — the Agent supplies them at runtime.
 
 ## Examples
 
@@ -92,6 +75,6 @@ If `name` is absent, empty, or whitespace-only, the action returns `Hello, World
 
 ## Modify the sample
 
-Edit the files under `source/src/main/java`, run the build again, and upload the newly generated `hello-static.zip`. Keep all framework-created classes public with accessible no-argument constructors, and keep input/output fields non-final.
+Edit the files under `source/src/main/java`, run `mvn package` again from the `source/` directory, and upload the newly generated ZIP. Keep all framework-created classes public with accessible no-argument constructors, and keep input/output fields non-final.
 
 For the complete contract, read the [Java API reference](../../../sdk/java/docs/java-api.md).

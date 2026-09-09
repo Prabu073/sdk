@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: Zoho Flow Hello Static Sample
-Implementation-Version: 1.0.0
-Implementation-Vendor: Zoho Corporation
-

@@ -5,14 +5,42 @@ Java compilation target: **Java 11**
 
 This SDK provides the customer-facing Java types used to build on-prem extensions for the Zoho Flow On-Prem Agent.
 
-## Downloaded libraries
+## SDK dependency
 
-The [`lib`](lib/) directory contains:
+### Maven
 
-- [`ZohoFlow-extension-sdk.jar`](lib/ZohoFlow-extension-sdk.jar) — on-prem-extension API, annotations, dynamic fields, triggers, long-lived connections, and transformations.
-- [`json.jar`](lib/json.jar) — JSON-java dependency used by the SDK APIs.
+```xml
+<repositories>
+    <repository>
+        <id>zohoflow-sdk</id>
+        <url>https://maven.zohodl.com/flow</url>
+    </repository>
+</repositories>
+<dependency>
+    <groupId>com.zoho.flow</groupId>
+    <artifactId>zohoflow-onprem-extension-sdk</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
 
-Add both JARs to the compile and local-test classpath. The Agent provides these libraries at runtime, so do **not** include either JAR in a connector upload ZIP.
+### Gradle
+
+```groovy
+repositories {
+    maven { url 'https://maven.zohodl.com/flow' }
+}
+dependencies {
+    implementation 'com.zoho.flow:zohoflow-onprem-extension-sdk:1.0.0'
+}
+```
+
+### Manual download
+
+Download the SDK ZIP and add both JARs to your compile and local-test classpath:
+
+[zohoflow-onprem-extension-sdk-1.0.0-java.zip](https://maven.zohodl.com/flow/com/zoho/flow/zohoflow-onprem-extension-sdk/1.0.0/zohoflow-onprem-extension-sdk-1.0.0-java.zip)
+
+The ZIP contains `ZohoFlow-extension-sdk.jar` and `json.jar`. The Agent provides both at runtime — do **not** include either JAR in a connector upload ZIP.
 
 ## First connector
 
@@ -37,16 +65,15 @@ Start with the [static-first guide](docs/getting-started.md). It introduces one 
 
 ## Compile classpath
 
-macOS/Linux:
+Declare the SDK as a `provided` dependency in your `pom.xml` — Maven resolves the classpath automatically and excludes the SDK from your connector JAR:
 
-```bash
-javac -cp "sdk/java/lib/ZohoFlow-extension-sdk.jar:sdk/java/lib/json.jar" YourConnector.java
-```
-
-Windows:
-
-```bat
-javac -cp "sdk\java\lib\ZohoFlow-extension-sdk.jar;sdk\java\lib\json.jar" YourConnector.java
+```xml
+<dependency>
+    <groupId>com.zoho.flow</groupId>
+    <artifactId>zohoflow-onprem-extension-sdk</artifactId>
+    <version>1.0.0</version>
+    <scope>provided</scope>
+</dependency>
 ```
 
 For complete projects and ready-to-upload archives, browse the [sample catalog](../../samples/README.md).

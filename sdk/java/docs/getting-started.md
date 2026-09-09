@@ -6,7 +6,7 @@ The SDK source is authoritative. Classes such as `CustomerApi`, `SpreadsheetClie
 
 ## Quick start
 
-1. Use Java 11 and add [`ZohoFlow-extension-sdk.jar`](../lib/ZohoFlow-extension-sdk.jar) and [`json.jar`](../lib/json.jar) to the compile classpath.
+1. Use Java 11 and add `ZohoFlow-extension-sdk.jar` and `json.jar` to the compile classpath — see [SDK dependency](../README.md#sdk-dependency) for Maven coordinates and download options.
 2. Start with the three small Java classes in section 1: one connector, one input model, and one output model.
 3. Compile the connector, then follow the [packaging guide](packaging.md). Do not include either SDK-provided JAR in the upload ZIP.
 

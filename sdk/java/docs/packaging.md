@@ -19,7 +19,7 @@ Declare the SDK as a `provided` dependency — Maven resolves the classpath and 
 
 ## Upload ZIP
 
-The Agent supplies the SDK and JSON-java at runtime. Do not package `ZohoFlow-extension-sdk.jar` or `json.jar` in the connector upload.
+The Agent supplies the SDK and JSON-java at runtime. Do not package `zohoflow-onprem-extension-sdk.jar` or `json.jar` in the connector upload.
 
 Use this layout for a Java Extension:
 

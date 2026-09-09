@@ -11,8 +11,6 @@ This directory contains a complete Java implementation and an upload-ready archi
 | Authentication | None |
 | Third-party runtime dependencies | None |
 
-The supported Zoho Flow Agent range is pending product verification. See the SDK [compatibility guide](../../../sdk/java/docs/compatibility.md).
-
 ## Try the ready-made ZIP
 
 1. Download [`hello-static.zip`](hello-static.zip).
@@ -64,7 +62,7 @@ hello-static.zip
     └── hello-static.jar
 ```
 
-`ZohoFlow-extension-sdk.jar` and `json.jar` are excluded — the Agent supplies them at runtime.
+`zohoflow-onprem-extension-sdk.jar` and `json.jar` are excluded — the Agent supplies them at runtime.
 
 ## Examples
 

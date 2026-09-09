@@ -40,7 +40,7 @@ Download the SDK ZIP and add both JARs to your compile and local-test classpath:
 
 [zohoflow-onprem-extension-sdk-1.0.0-java.zip](https://maven.zohodl.com/flow/com/zoho/flow/zohoflow-onprem-extension-sdk/1.0.0/zohoflow-onprem-extension-sdk-1.0.0-java.zip)
 
-The ZIP contains `ZohoFlow-extension-sdk.jar` and `json.jar`. The Agent provides both at runtime — do **not** include either JAR in a connector upload ZIP.
+The ZIP contains `zohoflow-onprem-extension-sdk.jar` and `json.jar`. The Agent provides both at runtime — do **not** include either JAR in a connector upload ZIP.
 
 ## First connector
 
@@ -61,7 +61,6 @@ Start with the [static-first guide](docs/getting-started.md). It introduces one 
 | Complete API contract | [Java API reference](docs/java-api.md) |
 | Packaging | [Packaging and dependencies](docs/packaging.md) |
 | Uploading and using an Extension in a Flow | [ZIP-to-Flow guide](../../README.md#deploy-to-zoho-flow) |
-| SDK and Agent versions | [Compatibility](docs/compatibility.md) |
 
 ## Compile classpath
 

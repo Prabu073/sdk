@@ -1,8 +1,8 @@
-# SDKs
+# Documentation
 
-This directory contains the language-specific Zoho Flow On-Prem Extension SDK distributions.
+Language-specific documentation for the Zoho Flow On-Prem Extension SDK.
 
-| Language | Status | Documentation |
+| Language | Status | Overview |
 |---|---|---|
 | Java | Available | [Java SDK](java/README.md) |
 | Python | Not currently available | — |

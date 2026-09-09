@@ -77,11 +77,9 @@ sdk/
   README.md           SDK and language index, packaging guide
   java/
     README.md         Java SDK overview and documentation index
-    lib/              Java compile-time dependencies
     docs/             Java API reference, guides, and compatibility
 samples/
-  README.md           Human-readable sample catalog
-  catalog.json        Machine-readable sample catalog
+  README.md           Sample catalog
 ```
 
 ## License

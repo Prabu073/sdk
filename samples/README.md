@@ -6,8 +6,6 @@ Samples are ordered from the simplest connector contract to more advanced Zoho F
 |---|---|---|---|---|---|
 | 01 | [Hello Static](01-hello-static/README.md) | Beginner | Java | Static action input and output | [hello-static.zip](01-hello-static/java/hello-static.zip) |
 
-The machine-readable catalog is available in [`catalog.json`](catalog.json).
-
 ## Two ways to use a sample
 
 ### Try it immediately

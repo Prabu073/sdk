@@ -86,14 +86,6 @@ For complete projects and ready-to-upload archives, browse the [sample catalog](
 - The Agent owns managed connection and real-time subscription lifecycles.
 - Connector upload ZIPs contain customer code and customer runtime dependencies, not SDK JARs.
 
-## Integrity and version information
-
-- [`VERSION`](VERSION)
-- [`compatibility.json`](compatibility.json)
-- [`SHA256SUMS`](SHA256SUMS)
-
-Version `1.0.0` is currently assigned by this distribution. The supplied JAR manifest does not yet embed an implementation version; the repository's `VERSION`, compatibility metadata, and checksum identify this distribution.
-
 ## Licensing
 
 The SDK repository is available under the [MIT License](../../LICENSE.txt). The `json.jar` transitive dependency (`org.json:json:20231013`) is Public Domain — see the [upstream project](https://github.com/stleary/JSON-java).

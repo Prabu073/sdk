@@ -665,5 +665,7 @@ public final class ProxyConfiguration {
 - [ ] Authentication is declared when needed and long-lived auth overrides `getConnectionClass()`.
 - [ ] Subscription C, I, and O types resolve to concrete classes (direct declaration or through a parameterized chain; unresolved type variables are rejected).
 - [ ] Connector never calls framework lifecycle bridges or references `AgentRuntimeBridge`.
+- [ ] All caught exceptions are logged with `LOGGER.log(Level.SEVERE, msg, e)` (includes stack trace) and manually thrown errors with `LOGGER.warning(msg)` before or alongside throwing them.
+- [ ] A static `Logger` field is declared on every class that does work — connector, authentication, helpers, clients, and utilities — not only the top-level connector class.
 - [ ] Customer-owned clients/helpers are clearly separated from SDK APIs.
 - [ ] Transient vs permanent failures use the intended `ExtensionException` factory.

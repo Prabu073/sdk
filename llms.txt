@@ -13,12 +13,16 @@ Canonical entry points:
 - docs/java/packaging.md
 - samples/README.md
 
+Log file location:
+- Extension logs are written to <FLOW_AGENT_HOME>/logs/extension/<extension_link_name>/extension-0.txt
+
 Generation constraints:
 - Use "On-Prem Extension" consistently in customer-facing prose.
 - Do not present Python or Node.js SDKs as available.
 - Declare the SDK via Maven (com.zoho.flow:zohoflow-onprem-extension-sdk) with scope=provided; json.jar is a transitive dependency and needs no separate declaration.
 - Do not include zohoflow-onprem-extension-sdk.jar or json.jar in connector upload ZIPs.
 - Use only customer-facing APIs documented by the Java API reference.
+- Always add a static Logger field to every class that does work (connector, authentication, helpers, clients, utilities). For caught exceptions use LOGGER.log(Level.SEVERE, msg, e) to include the stack trace. For manually thrown errors use LOGGER.warning(msg). Always log before throwing.
 - Do not call Agent lifecycle initialization methods.
 - Prefer static fields when the schema is known at implementation time.
 - Treat the ready-made sample ZIP as an intact upload artifact. After deployment, its discovered actions run through the selected On-Prem Agent inside a Flow.

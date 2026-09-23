@@ -859,24 +859,44 @@ Reference the Zoho Agent SDK JAR through the build mechanism approved for the en
 
 ### Execution logs
 
-The agent writes each library's log output to a dedicated directory alongside the main agent log:
+The Agent writes each extension's log output to a dedicated file:
 
 ```text
-<agent-home>/logs/customlib/<libraryName>/<libraryName>0.log
+<FLOW_AGENT_HOME>/logs/extension/<extension_link_name>/extension-0.txt
 ```
 
-Log records emitted by any `java.util.logging.Logger` on the execution thread — during action and polling-trigger invocations — are captured and written to this file. To log from connector code:
+Log records emitted by any `java.util.logging.Logger` on the execution thread — during action and polling-trigger invocations — are captured and written to this file.
+
+Log from connector code using the standard JUL API:
 
 ```java
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 private static final Logger LOGGER = Logger.getLogger(ExampleConnector.class.getName());
-
-// inside a method:
-LOGGER.info("Processing row: " + rowId);
 ```
 
-Log files rotate automatically (up to 3 files, 10 MB each). The library log is created when the library is loaded and closed when it is unloaded. Real-time trigger callbacks — including `convert()` and the event emission — are also routed to the per-library log on the connection thread.
+**Always log exceptions and manually thrown errors before or alongside throwing them:**
+
+```java
+@Action
+public Output run(Input input) throws Exception {
+    try {
+        return client.execute(input);
+    } catch (IOException e) {
+        LOGGER.log(Level.SEVERE, "API call failed: " + e.getMessage(), e);
+        throw ExtensionException.nonRetryable("API call failed", e);
+    }
+}
+
+// for manually thrown errors:
+if (input.id == null) {
+    LOGGER.warning("Missing required field: id");
+    throw ExtensionException.nonRetryable("id is required");
+}
+```
+
+Log files rotate automatically (up to 3 files, 10 MB each).
 
 ## 21. Agent runtime facilities
 

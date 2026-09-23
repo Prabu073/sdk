@@ -44,6 +44,8 @@ Public type inventory:
 | `com.zoho.agent.flow.extension.realtime.LongLivedConnection<A>` | abstract class | Implement a long-lived protocol connection                          |
 | `com.zoho.agent.flow.extension.realtime.Subscription<C,I,O>` | abstract class | Implement a logical real-time subscription                          |
 | `com.zoho.agent.flow.extension.realtime.FlowListener<O>` | functional interface | Framework-provided event destination; do not implement/call directly |
+| `com.zoho.agent.flow.extension.AgentRuntime` | final utility | Access Agent-managed SSL context and proxy configuration |
+| `com.zoho.agent.flow.extension.ProxyConfiguration` | final class | Immutable proxy snapshot returned by `AgentRuntime` |
 | `com.zoho.agent.flow.transformation.JSONSerializer` | final utility | Convert a customer POJO to a JSON-compatible value                  |
 | `com.zoho.agent.flow.transformation.JSONDeserializer` | final utility | Convert JSON text to a customer POJO or list                        |
 
@@ -163,19 +165,21 @@ All have runtime retention.
 ```java
 @Action public Output run(Input input) throws Exception;
 @Action public List<Output> runBatch(List<Input> input) throws Exception;
+@Action public ArrayList<Output> runBatch(ArrayList<Input> input) throws Exception;
 ```
 
-`Input` and `Output` must extend `ExtensionData`. Raw collections and non-concrete element types are rejected. The scanner recognizes `List`, not an arbitrary collection contract. The method must be public, declared on the connector class, and accept exactly one argument.
+`Input` and `Output` must extend `ExtensionData`. Raw collections and non-concrete element types are rejected. The scanner accepts both `List` and `ArrayList` declarations; other collection contracts (`Set`, `Collection`) are not accepted. The method must be public, declared on the connector class, and accept exactly one argument.
 
-The source accepts `List` input only for actions. It also accepts either a single action output or `List<Output>`. `throws Exception` is optional Java syntax; exceptions are described in section 21.
+The source accepts `List`/`ArrayList` input only for actions. It also accepts either a single action output or a parameterized list. `throws Exception` is optional Java syntax; exceptions are described in section 21.
 
 ## 7. Valid polling-trigger method signatures
 
 ```java
 @PollingTrigger public List<Event> poll(PollInput input) throws Exception;
+@PollingTrigger public ArrayList<Event> poll(PollInput input) throws Exception;
 ```
 
-`PollInput` and `Event` extend `ExtensionData`. Polling input cannot be a list. A polling trigger must return `List<Event>`; a single `Event` return is not accepted by the scanner. The schedule, batch limit, and retry schedule are not guaranteed by the inspected SDK source.
+`PollInput` and `Event` extend `ExtensionData`. Polling input cannot be a list. A polling trigger must return a parameterized list; the scanner accepts both `List<Event>` and `ArrayList<Event>`. A single `Event` return is not accepted. The schedule, batch limit, and retry schedule are not guaranteed by the inspected SDK source.
 
 ## 8. Polling cursor behavior
 
@@ -529,7 +533,7 @@ Example JSON:
 
 JSON keys are Java field names; `@Label` does not rename them. Serialization uses an accessible getter when available, otherwise a public field. It skips final fields, null values, and cyclic revisits. Arrays and collections become JSON arrays, `Date` becomes an ISO-8601 UTC instant, and enums use their constant names.
 
-Deserialization requires an accessible no-argument constructor and uses a setter when available, otherwise a public field. Missing fields retain their Java defaults. JSON null for a supported scalar produces no assignment. Invalid numeric, date, or enum conversion generally produces no assignment; an unrecognized boolean string is parsed as `false`. Omit absent optional nested objects or arrays instead of relying on JSON-null handling for those shapes.
+Deserialization requires an accessible no-argument constructor. Setter resolution checks candidates in this order: (1) exact field type, (2) primitive/wrapper equivalent (`int` ↔ `Integer`), (3) `List`/`ArrayList` equivalent — so a field declared as `ArrayList<Item>` may use a setter that accepts `List<Item>`. Falls back to the public field when no setter matches. Missing fields retain their Java defaults. JSON null for a supported scalar produces no assignment. Invalid numeric, date, or enum conversion generally produces no assignment; an unrecognized boolean string is parsed as `false`. Omit absent optional nested objects or arrays instead of relying on JSON-null handling for those shapes.
 
 `JSONSerializer.convert(Object)` returns a JSON-compatible value, normally `JSONObject` for a POJO and `JSONArray` for a collection. `JSONDeserializer.convert(String, Class<T>)` converts one JSON object, while `convertList(String, Class<T>)` converts a JSON array.
 
@@ -587,6 +591,60 @@ Metadata and value validation commonly throws `IllegalArgumentException`, unreso
 | Long-lived connections or persistent resources such as Redis, WebSocket, RPC clients, and SQL connection pools | `LongLivedConnection` plus authentication `getConnectionClass()` |
 | One request/response only                                                               | Connector-owned ordinary client; no long-lived SDK abstraction required |
 
+## 25. Agent runtime facilities
+
+Extensions can read Agent-managed SSL and proxy configuration through `AgentRuntime`:
+
+```java
+import com.zoho.agent.flow.extension.AgentRuntime;
+import com.zoho.agent.flow.extension.ProxyConfiguration;
+```
+
+```java
+public final class AgentRuntime {
+    public static SSLContext getSSLContext();
+    public static Optional<ProxyConfiguration> getProxyConfiguration();
+}
+```
+
+`getSSLContext()` returns an `SSLContext` containing certificates managed by Flow. `getProxyConfiguration()` returns `Optional.empty()` when the Agent has no proxy configured. Both values are created once and reused throughout the Agent lifecycle.
+
+Extensions must explicitly apply these values to their HTTP, FTP, or other network clients. The SDK does not automatically configure customer-created clients.
+
+Example with Java `HttpClient`:
+
+```java
+HttpClient.Builder builder = HttpClient.newBuilder()
+        .sslContext(AgentRuntime.getSSLContext());
+
+AgentRuntime.getProxyConfiguration().ifPresent(proxy -> {
+    builder.proxy(proxy.createProxySelector());
+    if (proxy.hasAuthentication()) {
+        builder.authenticator(proxy.createAuthenticator());
+    }
+});
+
+HttpClient client = builder.build();
+```
+
+`AgentRuntimeBridge` is an Agent-internal class and is excluded from the SDK. Extensions must not reference it.
+
+## 26. ProxyConfiguration API
+
+```java
+public final class ProxyConfiguration {
+    public String getHost();
+    public int getPort();
+    public String getUsername();
+    public char[] getPassword();      // returns a defensive copy
+    public boolean hasAuthentication();
+    public ProxySelector createProxySelector();
+    public Authenticator createAuthenticator(); // throws IllegalStateException if no auth
+}
+```
+
+`ProxyConfiguration` is an immutable snapshot. `createAuthenticator()` throws `IllegalStateException` when `hasAuthentication()` is `false` — always guard with `hasAuthentication()` before calling it.
+
 ## 24. LLM/project-generator correctness checklist
 
 - [ ] Connector extends `AbstractExtension`, is public, and has an accessible no-arg constructor.
@@ -606,6 +664,6 @@ Metadata and value validation commonly throws `IllegalArgumentException`, unreso
 - [ ] Raw JSON passthrough is used only for canonical, schema-matching JSON.
 - [ ] Authentication is declared when needed and long-lived auth overrides `getConnectionClass()`.
 - [ ] Subscription C, I, and O types resolve to concrete classes (direct declaration or through a parameterized chain; unresolved type variables are rejected).
-- [ ] Connector never calls framework lifecycle bridges.
+- [ ] Connector never calls framework lifecycle bridges or references `AgentRuntimeBridge`.
 - [ ] Customer-owned clients/helpers are clearly separated from SDK APIs.
 - [ ] Transient vs permanent failures use the intended `ExtensionException` factory.

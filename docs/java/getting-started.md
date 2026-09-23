@@ -878,7 +878,42 @@ LOGGER.info("Processing row: " + rowId);
 
 Log files rotate automatically (up to 3 files, 10 MB each). The library log is created when the library is loaded and closed when it is unloaded. Real-time trigger callbacks — including `convert()` and the event emission — are also routed to the per-library log on the connection thread.
 
-## 21. Common mistakes
+## 21. Agent runtime facilities
+
+Extensions can access Agent-managed SSL and proxy configuration through `AgentRuntime`. This is useful when the connector makes outbound HTTPS, FTP, or other network calls and needs to trust Zoho-managed certificates or route through a corporate proxy.
+
+```java
+import com.zoho.agent.flow.extension.AgentRuntime;
+import com.zoho.agent.flow.extension.ProxyConfiguration;
+```
+
+Apply SSL and proxy to a Java `HttpClient`:
+
+```java
+HttpClient.Builder builder = HttpClient.newBuilder()
+        .sslContext(AgentRuntime.getSSLContext());
+
+AgentRuntime.getProxyConfiguration().ifPresent(proxy -> {
+    builder.proxy(proxy.createProxySelector());
+    if (proxy.hasAuthentication()) {
+        builder.authenticator(proxy.createAuthenticator());
+    }
+});
+
+HttpClient client = builder.build();
+```
+
+Key points:
+
+- `AgentRuntime.getSSLContext()` returns the Agent's SSL context, which includes certificates managed by Flow.
+- `AgentRuntime.getProxyConfiguration()` returns `Optional.empty()` when no proxy is configured.
+- Apply these values explicitly — the SDK does not automatically configure customer-created clients.
+- Both values are stable snapshots for the Agent lifecycle; create the client once and reuse it.
+- Do not reference `AgentRuntimeBridge`; it is Agent-internal and excluded from the SDK.
+
+For the full `ProxyConfiguration` API, see the [Java API reference](java-api.md#26-proxyconfiguration-api).
+
+## 22. Common mistakes
 
 | Symptom | Cause | Fix |
 |---|---|---|
@@ -899,7 +934,7 @@ Log files rotate automatically (up to 3 files, 10 MB each). The library log is c
 | A managed connection is unexpectedly closed or leaked | Connector code cached or closed the Agent-owned connection | Fetch it inside each action invocation and never retain or close it |
 | Delivery/retry behavior differs from assumptions | Connector code assumes schedules, ordering, or exactly-once guarantees | Implement idempotency and rely only on documented platform guarantees |
 
-## 22. Final checklist
+## 23. Final checklist
 
 ### First static project
 

@@ -19,7 +19,7 @@ This SDK provides the customer-facing Java types used to build on-prem extension
 <dependency>
     <groupId>com.zoho.flow</groupId>
     <artifactId>zohoflow-onprem-extension-sdk</artifactId>
-    <version>1.0.0</version>
+    <version>150.0.1</version>
 </dependency>
 ```
 
@@ -30,7 +30,7 @@ repositories {
     maven { url 'https://maven.zohodl.com/flow' }
 }
 dependencies {
-    compileOnly 'com.zoho.flow:zohoflow-onprem-extension-sdk:1.0.0'
+    compileOnly 'com.zoho.flow:zohoflow-onprem-extension-sdk:150.0.1'
 }
 ```
 
@@ -38,7 +38,7 @@ dependencies {
 
 Download the SDK ZIP and add both JARs to your compile and local-test classpath:
 
-[zohoflow-onprem-extension-sdk-1.0.0-java.zip](https://maven.zohodl.com/flow/com/zoho/flow/zohoflow-onprem-extension-sdk/1.0.0/zohoflow-onprem-extension-sdk-1.0.0-java.zip)
+[zohoflow-onprem-extension-sdk-150.0.1-java.zip](https://maven.zohodl.com/flow/com/zoho/flow/zohoflow-onprem-extension-sdk/150.0.1/zohoflow-onprem-extension-sdk-150.0.1-java.zip)
 
 The ZIP contains `zohoflow-onprem-extension-sdk.jar` and `json.jar`. The Agent provides both at runtime — do **not** include either JAR in a connector upload ZIP.
 
@@ -70,7 +70,7 @@ Declare the SDK as a `provided` dependency in your `pom.xml` — Maven resolves 
 <dependency>
     <groupId>com.zoho.flow</groupId>
     <artifactId>zohoflow-onprem-extension-sdk</artifactId>
-    <version>1.0.0</version>
+    <version>150.0.1</version>
     <scope>provided</scope>
 </dependency>
 ```
